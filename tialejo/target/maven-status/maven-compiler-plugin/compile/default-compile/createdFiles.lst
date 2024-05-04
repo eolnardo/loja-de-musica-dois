@@ -1,0 +1,12 @@
+servlet\produto\CriarProdutoServlet.class
+servlet\produto\AlterarStatusProdutoServlet.class
+dao\ProdutoDAO.class
+model\Produto.class
+servlet\login\LoginServlet.class
+servlet\usuario\CriarUsuarioServlet.class
+dao\UsuarioDAO.class
+servlet\produto\ListarProdutosServlet.class
+filter\FiltroAutenticacao.class
+model\Usuario.class
+servlet\login\LogoutServlet.class
+servlet\config\ConnectionPoolConfig.class
