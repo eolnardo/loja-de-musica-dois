@@ -38,6 +38,9 @@ public class Usuario {
         this.grupo = grupo;
     }
 
+    public Usuario(String email, String senha, String confirmaSenha) {
+    }
+
     public String getId() {
         return id;
     }

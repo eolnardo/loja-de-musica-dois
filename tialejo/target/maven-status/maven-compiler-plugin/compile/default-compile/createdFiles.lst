@@ -2,13 +2,17 @@ servlet\logincliente\LogoutServlet.class
 servlet\logincliente\LoginServlet.class
 servlet\produto\AlterarStatusProdutoServlet.class
 dao\ProdutoDAO.class
+servlet\cliente\CriarClienteServlet.class
+model\Cliente$Genero.class
 model\Usuario.class
 servlet\config\ConnectionPoolConfig.class
 servlet\loginbackoffice\LogoutServlet.class
 servlet\produto\CriarProdutoServlet.class
+model\Cliente.class
 model\Produto.class
 servlet\usuario\CriarUsuarioServlet.class
 servlet\usuario\ListarUsuariosServlet.class
+dao\ClienteDAO.class
 dao\UsuarioDAO.class
 servlet\produto\ListarProdutosServlet.class
 servlet\usuario\AlterarStatusUsuarioServlet.class

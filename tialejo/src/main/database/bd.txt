@@ -24,6 +24,18 @@ CREATE TABLE Usuario (
 INSERT INTO Usuario (email, senha, confirmasenha, grupo) VALUES ('estoquista@estoquista', 'estoquista', 'estoquista', 'estoquista');
 INSERT INTO Usuario (email, senha, confirmasenha, grupo) VALUES ('adm@adm', 'admin', 'admin', 'administrador');
 
+CREATE TABLE Cliente (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(255) NOT NULL,
+    email VARCHAR(255) NOT NULL,
+    nascimento DATE NOT NULL,
+    genero ENUM('Masculino', 'Feminino', 'Outro') NOT NULL,
+    endereco VARCHAR(255) NOT NULL,
+    cpf VARCHAR(14) NOT NULL,
+    senha VARCHAR(255) NOT NULL,
+    confirmarSenha VARCHAR(255) NOT NULL
+);
+
 
 
 
