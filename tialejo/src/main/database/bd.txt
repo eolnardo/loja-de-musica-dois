@@ -1,0 +1,377 @@
+CREATE TABLE Produto (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(100),
+    avaliacao VARCHAR(10),
+    descricao VARCHAR(255),
+    preco DECIMAL(10, 2),
+    qtdEstoque INT,
+    status BOOLEAN,
+    imagem VARCHAR(255)
+);
+
+
+CREATE TABLE Usuario (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nome VARCHAR(50),
+    email VARCHAR(100),
+    grupo VARCHAR(100),
+    cpf VARCHAR(14),
+    senha VARCHAR(50),
+    confirmaSenha VARCHAR(50),
+    status boolean
+);
+
+INSERT INTO Usuario (email, senha, confirmasenha, grupo) VALUES ('estoquista@estoquista', 'estoquista', 'estoquista', 'estoquista');
+INSERT INTO Usuario (email, senha, confirmasenha, grupo) VALUES ('adm@adm', 'admin', 'admin', 'administrador');
+
+
+
+
+User
+<!doctype html>
+<html lang="pt-BR" xmlns:th="http://www.w3.org/1999/xhtml">
+
+<head>
+    <title>Tialejo ® - Cadastro de Produto</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
+    <link rel="stylesheet" th:href="@{css/style.css}">
+    <link rel="shortcut icon" th:href="@{/images/cd.ico}" type="image/x-icon">
+
+    <style>
+        .error-message {
+            color: #ff0000;
+            font-size: 12px;
+            margin-top: 5px;
+        }
+
+        .form-group.error input.form-style {
+            border: 1px solid #ff0000;
+            background-color: #ffe6e6;
+        }
+
+        .error {
+            border: 1px solid #ff0000;
+            background-color: #ffe6e6;
+        }
+    </style>
+
+</head>
+
+<body style="background-color: #b7bafd;">
+<div class="navbar">
+    <img src="assets/images/pegada.png" alt="petprotectors-logo" style="height: 50px;">
+    <a href="index.jsp" class="navbar-brand" style="background-color: #1E1D67;">Pet Protectors</a>
+    <ul class="navbar-menu"></ul>
+</div>
+
+<div class="container">
+    <div class="form-image">
+        <img src="assets/images/undraw_Dog_walking_re_l61p.png" alt="">
+    </div>
+    <div class="form">
+        <form action="criar-produto" method="post">
+            <div class="form-header">
+                <div class="title">
+                    <h1>Cadastrar Produto</h1>
+                </div>
+            </div>
+            <div class="input-group">
+
+                <div class="input-box">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" value="${param.nome}" required><br><br>
+                </div>
+                <div class="input-box">
+                    <label for="avaliacao">Avaliação:</label>
+                    <input type="text" id="avaliacao" name="avaliacao" value="${param.avaliacao}" min="1" max="5" step="0.5" required><br><br>
+                </div>
+                <div class="input-box">
+                    <label for="descricao">Descrição:</label>
+                    <input type="text" id="descricao" name="descricao" value="${param.descricao}" required><br><br>
+                </div>
+                <div class="input-box">
+                    <label for="preco">Preço:</label>
+                    <input type="text" id="preco" name="preco" value="${param.preco}" required><br><br>
+                </div>
+                <div class="input-box">
+                    <label for="qtdEstoque">Quantiade em Estoque:</label>
+                    <input type="text" id="qtdEstoque" name="qtdEstoque" value="${param.qtdEstoque}" required><br><br>
+                </div>
+                <div>
+                    <label for="image">Escolher imagem</label>
+                    <input type="file" name="image" id="image" accept="image/png, image/jpeg" onchange="previa(event)"/>
+                    <img id="previa" src="#" alt="Prévia da imagem" style="max-width: 300px; max-height: 200px; display: none;"/>
+                </div>
+                <div class="input-box">
+                    <input type="hidden" id="id" name="id" value="${param.id}">
+                </div>
+            </div>
+
+            <div class="cadastrar-button">
+                <div>
+                    <button class="botao azul" ><a class="azul" href="index.jsp">Voltar</a></button>
+                </div>
+                <div>
+                    <button type="submit" class="botao verde" style="margin-left: 10px">Cadastrar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script src="assets/js/menu.js"></script>
+
+<script>
+    function previa(event) {
+        var input = event.target;
+        var previa = document.getElementById("previa");
+
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                previa.src = e.target.result;
+                previa.style.display = "block";
+            };
+
+            reader.readAsDataURL(input.files[0]);
+        } else {
+            previa.src = "#";
+            previa.style.display = "none";
+        }
+    }
+</script>
+
+</body>
+
+como faço funcionar utilizando o  enctype="multipart/form-data"
+ChatGPT
+Para fazer o envio de arquivos (como imagens) em um formulário HTML, você precisa adicionar o atributo enctype="multipart/form-data" ao elemento <form>. Este atributo é essencial para que o formulário possa enviar arquivos binários, como imagens, vídeos, etc.
+
+No seu código HTML, adicione enctype="multipart/form-data" ao elemento <form> da seguinte maneira:
+
+html
+Copy code
+<form action="criar-produto" method="post" enctype="multipart/form-data">
+    <!-- Seus campos de entrada e botões aqui -->
+</form>
+Após adicionar esse atributo, seu formulário estará pronto para aceitar o envio de arquivos. Quando o usuário selecionar um arquivo para upload, ele será enviado junto com os outros campos do formulário quando o formulário for submetido.
+
+Com essa alteração, seu formulário estará pronto para funcionar corretamente com o envio de arquivos.
+
+User
+v
+ChatGPT
+Se você precisa de mais alguma orientação ou tem alguma dúvida específica, estou aqui para ajudar!
+
+User
+HTTP Status 500 - Cannot invoke "String.toCharArray()" because "val" is null
+type Exception report
+
+message Cannot invoke "String.toCharArray()" because "val" is null
+
+description The server encountered an internal error that prevented it from fulfilling this request.
+
+exception
+
+java.lang.NullPointerException: Cannot invoke "String.toCharArray()" because "val" is null
+	java.base/java.math.BigDecimal.<init>(BigDecimal.java:889)
+	servlet.produto.CriarProdutoServlet.doPost(CriarProdutoServlet.java:34)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:647)
+	javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+note The full stack trace of the root cause is available in the Apache Tomcat/7.0.37 logs.
+
+Apache Tomcat/7.0.37
+ChatGPT
+O erro "java.lang.NullPointerException: Cannot invoke "String.toCharArray()" because "val" is null" indica que você está tentando operar em uma variável ou objeto que é nulo.
+
+O problema pode estar ocorrendo na linha 34 do arquivo CriarProdutoServlet.java. Provavelmente, você está tentando criar um objeto BigDecimal a partir de um valor que está nulo.
+
+Para corrigir esse erro, verifique onde você está tentando criar um BigDecimal e certifique-se de que o valor usado não é nulo. Você pode adicionar verificações para garantir que o valor não seja nulo antes de tentar criar o BigDecimal.
+
+Se precisar de mais ajuda, seria útil ver o trecho de código relevante no arquivo CriarProdutoServlet.java para fornecer orientações mais específicas.
+
+User
+entao, o valor nao era passado nulo até colocar o enctype="multipart/form-data"
+ChatGPT
+Entendi, a adição do enctype="multipart/form-data" pode impactar o processamento dos parâmetros no lado do servidor. Quando você adiciona esse atributo ao seu formulário HTML, ele muda a maneira como os dados do formulário são codificados e enviados para o servidor, especialmente no caso de arquivos binários como imagens.
+
+O problema pode estar relacionado ao processamento dos parâmetros do formulário no servlet CriarProdutoServlet após a adição do enctype="multipart/form-data". Ao usar esse tipo de enctype, o processamento dos parâmetros do formulário, incluindo campos de texto e arquivos, pode ser diferente do habitual.
+
+Você pode precisar ajustar a maneira como está acessando e processando os parâmetros do formulário no servlet para lidar adequadamente com o envio de arquivos. Certifique-se de usar métodos apropriados para acessar os parâmetros do formulário e os arquivos enviados, como request.getParameter() para campos de texto e request.getPart() para arquivos.
+
+Se precisar de mais ajuda com a implementação específica no servlet ou tiver dúvidas sobre como lidar com os parâmetros do formulário após a alteração do enctype, por favor, compartilhe o trecho relevante do código do servlet para que eu possa fornecer orientações mais detalhadas.
+
+User
+ai. 04, 2024 5:25:50 PM org.apache.catalina.core.StandardWrapperValve invoke
+SEVERE: Servlet.service() for servlet [servlet.produto.CriarProdutoServlet] in context with path [] threw exception
+java.lang.NumberFormatException: Cannot parse null string
+	at java.base/java.lang.Integer.parseInt(Integer.java:627)
+	at java.base/java.lang.Integer.parseInt(Integer.java:781)
+	at servlet.produto.CriarProdutoServlet.doPost(CriarProdutoServlet.java:38)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:647)
+	at javax.servlet.http.HttpServlet.service(HttpServlet.java:728)
+	at org.apache.catalina.core.ApplicationFilterChain.internalDoFilter(ApplicationFilterChain.java:305)
+	at org.apache.catalina.core.ApplicationFilterChain.doFilter(ApplicationFilterChain.java:210)
+	at org.apache.catalina.core.StandardWrapperValve.invoke(StandardWrapperValve.java:222)
+	at org.apache.catalina.core.StandardContextValve.invoke(StandardContextValve.java:123)
+	at org.apache.catalina.authenticator.AuthenticatorBase.invoke(AuthenticatorBase.java:472)
+	at org.apache.catalina.core.StandardHostValve.invoke(StandardHostValve.java:171)
+	at org.apache.catalina.valves.ErrorReportValve.invoke(ErrorReportValve.java:99)
+	at org.apache.catalina.valves.AccessLogValve.invoke(AccessLogValve.java:936)
+	at org.apache.catalina.core.StandardEngineValve.invoke(StandardEngineValve.java:118)
+	at org.apache.catalina.connector.CoyoteAdapter.service(CoyoteAdapter.java:407)
+	at org.apache.coyote.http11.AbstractHttp11Processor.process(AbstractHttp11Processor.java:1004)
+	at org.apache.coyote.AbstractProtocol$AbstractConnectionHandler.process(AbstractProtocol.java:589)
+	at org.apache.tomcat.util.net.JIoEndpoint$SocketProcessor.run(JIoEndpoint.java:310)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1144)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:642)
+	at java.base/java.lang.Thread.run(Thread.java:1623)
+
+ChatGPT
+O erro "java.lang.NumberFormatException: Cannot parse null string" indica que você está tentando converter uma string nula para um número, o que não é possível.
+
+Na linha 38 do arquivo CriarProdutoServlet.java, você está tentando converter uma string para um número usando Integer.parseInt(), mas essa string está vindo nula.
+
+Para corrigir esse erro, você precisa verificar se a string que está sendo convertida para um número não é nula antes de chamar o método Integer.parseInt(). Você pode fazer isso adicionando uma verificação para garantir que a string não seja nula antes de tentar convertê-la.
+
+Por exemplo:
+
+java
+Copy code
+String paramValue = request.getParameter("paramName");
+if (paramValue != null) {
+    int integerValue = Integer.parseInt(paramValue);
+    // Continue o processamento aqui
+} else {
+    // Trate o caso em que o parâmetro é nulo
+}
+Assim, você evita a exceção de NumberFormatException quando a string é nula. Certifique-se de adicionar essas verificações em todas as partes do seu código onde você está convertendo strings para números para garantir que não ocorram exceções quando as strings são nulas.
+
+Se precisar de mais ajuda com a implementação específica no servlet ou tiver dúvidas adicionais, sinta-se à vontade para compartilhar mais detalhes do seu código.
+
+User
+package br.senac.tialejo.model;
+
+import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+
+@Entity @Table(name = "FUNCIONARIO")
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "ID")
+    private Long id;
+    @Column(name = "NAME")
+    @NotBlank(message = "Nome não pode estar em branco!")
+    private String name;
+    @Column(name = "EMAIL")
+    @NotBlank(message = "Email não pode estar em branco!")
+    private String email;
+    @Column(name = "TELEFONE")
+    private Integer telefone;
+    @Column(name = "ROLE")
+    private String role;
+    @Column(name = "STATUS")
+    private boolean status;
+    @Column(name = "SENHA")
+
+    private String senha;
+    @Column(name = "CONFIRMASENHA")
+    private String confirmaSenha;
+
+
+    public User() {
+    }
+
+
+    public User(Long id, String name, String email, Integer telefone, String role, boolean status, String senha, String confirmaSenha) {
+        this.id = id;
+        this.name = name;
+        this.email = email;
+        this.telefone = telefone;
+        this.role = role;
+        this.status = status;
+        this.senha = senha;
+        this.confirmaSenha = confirmaSenha;
+
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Integer getTelefone() {
+        return telefone;
+    }
+
+    public void setTelefone(Integer telefone) {
+        this.telefone = telefone;
+    }
+
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
+    public boolean getStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
+    }
+
+    public String getSenha() {
+        return senha;
+    }
+
+    public void setSenha(String senha) {
+        this.senha = senha;
+    }
+
+    public String getConfirmaSenha() {
+        return confirmaSenha;
+    }
+
+    public void setConfirmaSenha(String confirmaSenha) {
+        this.confirmaSenha = confirmaSenha;
+    }
+}
+
+CREATE TABLE FUNCIONARIO (
+    ID BIGINT AUTO_INCREMENT PRIMARY KEY,
+    NAME VARCHAR(255) NOT NULL,
+    EMAIL VARCHAR(255) NOT NULL,
+    TELEFONE INT,
+    ROLE VARCHAR(255),
+    STATUS BOOLEAN,
+    SENHA VARCHAR(255),
+    CONFIRMASENHA VARCHAR(255)
+);
