@@ -23,7 +23,7 @@ public class AlterarStatusProdutoServlet extends HttpServlet {
 
         produto.setStatus(!produto.getStatus());
 
-        produtoDAO.atualizarProduto(produto);
+        produtoDAO.atualizarStatusProduto(produto);
 
         resp.sendRedirect("encontrar-todos-produtos");
     }

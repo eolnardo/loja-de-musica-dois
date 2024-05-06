@@ -20,10 +20,10 @@ public class FiltroAutenticacao implements Filter {
 
             servletRequest.setAttribute("message", "Usuário não autenticado!");
 
-            servletRequest.getRequestDispatcher("/login.jsp").forward(httpServletRequest, servletResponse);
+            servletRequest.getRequestDispatcher("/backoffice.jsp").forward(httpServletRequest, servletResponse);
 
         } else {
-
+            isUserAdmin(httpServletRequest);
             chain.doFilter(servletRequest, servletResponse);
 
         }
@@ -35,7 +35,13 @@ public class FiltroAutenticacao implements Filter {
 
     private boolean isUserLoggedOn(HttpServletRequest httpServletRequest) {
 
-        return  httpServletRequest.getSession().getAttribute("loggedUser") == null;
+        return  httpServletRequest.getSession().getAttribute("loggedUsuario") == null;
+
+    }
+
+    private boolean isUserAdmin(HttpServletRequest httpServletRequest) {
+
+        return  httpServletRequest.getSession().getAttribute("admin") == null;
 
     }
 

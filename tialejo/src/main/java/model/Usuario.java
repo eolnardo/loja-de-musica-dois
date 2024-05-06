@@ -2,31 +2,40 @@ package model;
 
 public class Usuario {
     private String id;
-    private String name;
+    private String nome;
     private String email;
-    private String telefone;
-    private String endereco;
-    private String genero;
     private String cpf;
+    private String grupo;
+    private boolean status;
     private String senha;
     private String confirmaSenha;
 
-    public Usuario(String id, String name, String email, String telefone, String endereco, String genero, String cpf, String senha, String confirmaSenha) {
+    public Usuario() {
+    }
+
+    public Usuario(String id, String nome, String email, String grupo, String cpf, String senha, String confirmaSenha, boolean status) {
         this.id = id;
-        this.name = name;
+        this.nome = nome;
         this.email = email;
-        this.telefone = telefone;
-        this.endereco = endereco;
-        this.genero = genero;
         this.cpf = cpf;
+        this.grupo = grupo;
+        this.status = status;
         this.senha = senha;
         this.confirmaSenha = confirmaSenha;
     }
 
-    public Usuario(String email, String senha, String confirmaSenha) {
+    public Usuario(String email, String grupo, String senha, String confirmaSenha) {
         this.email = email;
+        this.grupo = grupo;
         this.senha = senha;
         this.confirmaSenha = confirmaSenha;
+    }
+
+    public Usuario(String nome, String email, boolean status, String grupo) {
+        this.nome = nome;
+        this.email = email;
+        this.status = status;
+        this.grupo = grupo;
     }
 
     public String getId() {
@@ -37,12 +46,12 @@ public class Usuario {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getNome() {
+        return nome;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setNome(String nome) {
+        this.nome = nome;
     }
 
     public String getEmail() {
@@ -53,36 +62,28 @@ public class Usuario {
         this.email = email;
     }
 
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public String getEndereco() {
-        return endereco;
-    }
-
-    public void setEndereco(String endereco) {
-        this.endereco = endereco;
-    }
-
-    public String getGenero() {
-        return genero;
-    }
-
-    public void setGenero(String genero) {
-        this.genero = genero;
-    }
-
     public String getCpf() {
         return cpf;
     }
 
     public void setCpf(String cpf) {
         this.cpf = cpf;
+    }
+
+    public String getGrupo() {
+        return grupo;
+    }
+
+    public void setGrupo(String grupo) {
+        this.grupo = grupo;
+    }
+
+    public boolean isStatus() {
+        return status;
+    }
+
+    public void setStatus(boolean status) {
+        this.status = status;
     }
 
     public String getSenha() {
@@ -99,5 +100,17 @@ public class Usuario {
 
     public void setConfirmaSenha(String confirmaSenha) {
         this.confirmaSenha = confirmaSenha;
+    }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "email='" + email + '\'' +
+                "id='" + id + '\'' +
+                ", grupo='" + grupo + '\'' +
+                ", status=" + status +
+                ", senha='" + senha + '\'' +
+                ", confirmaSenha='" + confirmaSenha + '\'' +
+                '}';
     }
 }

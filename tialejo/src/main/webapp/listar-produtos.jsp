@@ -18,7 +18,7 @@
 
     <c:if test="${sessionScope.loggedUsuario != null}">
         <span>${sessionScope.loggedUsuario}</span>
-        <a href="/logout">Sair</a>
+        <a href="/logout-backoffice">Sair</a>
     </c:if>
 
     <h1>Produtos</h1>
@@ -58,13 +58,13 @@
                     </c:if>
                 </td>
                 <td>
-                    <form action="/visulizar" method="post">
-                        <span> | </span>
-                        <a href="index.jsp?id=${produto.id}&name=${produto.nome}">Visualizar</a>
+                    <form action="/visualizar" method="get">
+                        <input type="hidden" name="id" value="${produto.id}">
+                        <button type="submit">Visualizar</button>
                     </form>
                 </td>
                 <td>
-                    <c:if test="${sessionScope.loggedUsuario != null}">
+                    <c:if test="${sessionScope.loggedUsuario != null and sessionScope.grupo == 'admin'}">
                         <form action="alterar-status-produto" method="post">
                             <input type="hidden" name="id" value="${produto.id}">
                             <button type="submit">Inativar/Reativar</button>

@@ -1,14 +1,15 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <title>Tialejo ® - Cadastro</title>
+    <title>Tialejo ® - Produto</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="@{css/style.css}">
-    <link rel="stylesheet" href="@{css/carrossel.css}">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/carrossel.css">
     <link rel="shortcut icon" href="@{/images/cd.ico}" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
           integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
@@ -26,8 +27,13 @@
         </div>
     </a>
     <div class="right-navbar">
-        <a href="@{'/landingPage'}" class="btn mt-4" style="z-index: 999">Voltar</a>
-        <a href="@{'/login'}" class="btn mt-4" style="z-index: 999">Logout</a>
+        <form action="encontrar-todos-produtos" method="get">
+            <button  class="btn mt-4" style="z-index: 999">Voltar</button>
+        </form>
+        <c:if test="${sessionScope.loggedUsuario != null}">
+            <a href="/logout" class="btn mt-4" style="z-index: 999">Sair</a>
+        </c:if>
+
     </div>
 </nav>
 <div class="maior">
@@ -60,24 +66,27 @@
         <button class="carrousel-botoes botao-proximo " data-carrousel-botao-proximo><span
                 class="fa-solid fa-circle-chevron-right"></span></button>
     </div>
-    <div>
-        <div class="col-12 text-center align-self-center py-5" style="color: rgb(180, 14, 235)">
-            <h2>Vinil Album "GAME" - Perfume PRONTA ENTREGA </h2>
-        </div>
-        <div class="informações">
-            <h3 style="color: rgb(234, 18, 18)">Preço: 300,00</h3>
-            <h4>Avaliações: 5/5 <i class="fa-solid fa-star"></i></h4>
+    <form action="/visualizar" method="get">
+        <div>
+            <div class="col-12 text-center align-self-center py-5" style="color: rgb(180, 14, 235)">
+                <label >Nome</label>
+                    <h2>
+                        <input value="${produto.nome}" readonly>
+                    </h2>
+            </div>
+            <div class="informações">
+                <h3 style="color: rgb(234, 18, 18)">Preço: <input value="${produto.preco}" readonly></h3>
+                <h4>Avaliações: <input value="${produto.avaliacao}" readonly> <i class="fa-solid fa-star"></i></h4>
 
+            </div>
+            <div class="informações">
+                <h3 style="color: rgb(234, 18, 18)">Descrição:  <input value="${produto.descricao}" readonly></h3>
+
+            </div>
+            <button class="btn mt-4">Comprar</button>
         </div>
-        <div class="informações">
-            <li style="color: rgb(234, 18, 18)">Descrição:</li>
-            <h4> Vinil lacrado do trio JPOP Perfume, GAME, é o album de estreia do trio, e conta com uma gama de
-                hits techno-dance</h4>
-        </div>
-        <a class="btn mt-4">comprar</a>
-    </div>
+    </form>
 </div>
-
 <script src="@{js/carrousel.js}"></script>
 
 </body>

@@ -92,8 +92,10 @@ public class ProdutoDAO {
         String SQL = "SELECT * FROM Produto WHERE id = ?";
         Produto produto = null;
 
-        try (Connection connection = ConnectionPoolConfig.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+        try (
+
+            Connection connection = ConnectionPoolConfig.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
             preparedStatement.setString(1, id);
             ResultSet resultSet = preparedStatement.executeQuery();
 
@@ -113,7 +115,7 @@ public class ProdutoDAO {
         return produto;
     }
 
-    public void atualizarProduto(Produto produto) {
+    public void atualizarStatusProduto(Produto produto) {
         String SQL = "UPDATE Produto SET status = ? WHERE id = ?";
 
         try (Connection connection = ConnectionPoolConfig.getConnection();
@@ -124,6 +126,44 @@ public class ProdutoDAO {
         } catch (SQLException e) {
             throw new RuntimeException("Erro ao atualizar produto", e);
         }
+    }
+
+    public Produto exibirProduto(String id) {
+        String SQL = "SELECT * FROM produto WHERE id = ?";
+
+        Produto produto = null;
+
+        try {
+            Connection connection = ConnectionPoolConfig.getConnection();
+
+            System.out.println("Sucesso na conexão com o banco de dados");
+
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            preparedStatement.setString(1, id);
+
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            while (resultSet.next()) {
+                String produtoId = resultSet.getString("id");
+                String produtoNome = resultSet.getString("nome");
+                int produtoQtdEstoque = resultSet.getInt("qtdEstoque");
+                BigDecimal produtoValor = resultSet.getBigDecimal("preco");
+                boolean produtoStatus = resultSet.getBoolean("status");
+                //PlanoServlet.setPlanoId(plano);
+
+                produto = new Produto(produtoId, produtoNome, produtoQtdEstoque, produtoValor, produtoStatus);
+            }
+
+            System.out.println("Sucesso na consulta ao produto");
+
+        } catch (SQLException e) {
+            System.err.println("Erro na conexão com o banco de dados: " + e.getMessage());
+        }
+        if (produto == null) {
+            produto = new Produto(); // produto vazio em caso de falha na consulta
+        }
+
+        return produto;
     }
 
 }
