@@ -1,7 +1,7 @@
 package servlet.logincliente;
 
-import dao.UsuarioDAO;
-import model.Usuario;
+import dao.ClienteDAO;
+import model.Cliente;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -28,17 +28,17 @@ public class LoginServlet extends HttpServlet {
         String confirmaSenha = req.getParameter("senha");
         String grupo = req.getParameter("grupo");
 
-        Usuario usuario = new Usuario(email, grupo, senha, confirmaSenha);
+        Cliente cliente = new Cliente(email, senha, confirmaSenha);
 
         System.out.println(grupo);
 
-        boolean eUsuarioValido = new UsuarioDAO().verificarCredenciais(usuario);
+        boolean eClienteValido = new ClienteDAO().verificarCredenciais(cliente);
 
-        if (eUsuarioValido && usuario.getGrupo().equalsIgnoreCase("admin") || eUsuarioValido && usuario.getGrupo().equalsIgnoreCase("estoquista")) {
+        if (eClienteValido) {
 
-            req.getSession().setAttribute("loggedUsuario", email);
+            req.getSession().setAttribute("loggedCliente", email);
 
-            resp.sendRedirect("encontrar-todos-produtos");
+            resp.sendRedirect("index.jsp");
 
         } else {
 

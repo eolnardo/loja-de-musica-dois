@@ -11,7 +11,7 @@ import java.util.List;
 
 public class ProdutoDAO {
     public void criarProduto(Produto produto) {
-        String SQL = "INSERT INTO Produto (nome, avaliacao, descricao, preco, qtdEstoque, status, imagem) VALUES (?, ?, ?, ?, ?, ?, ?)";
+        String SQL = "INSERT INTO Produto (nome, avaliacao, descricao, preco, qtdEstoque, status, image) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
         try {
 
@@ -25,7 +25,10 @@ public class ProdutoDAO {
             preparedStatement.setBigDecimal(4, produto.getPreco());
             preparedStatement.setInt(5, produto.getQtdEstoque());
             preparedStatement.setBoolean(6, true);
-            preparedStatement.setString(7, produto.getImagem());
+
+            System.out.println("aqui está a image: " + produto.getImage());
+
+            preparedStatement.setString(7, produto.getImage());
 
             preparedStatement.execute();
 
@@ -35,6 +38,7 @@ public class ProdutoDAO {
 
 
             System.out.println("fail in database connection 1");
+            System.out.println("Erro: " + e.getMessage());
             throw new RuntimeException(e);
 
         }
@@ -61,18 +65,15 @@ public class ProdutoDAO {
                 int produtoQtdEstoque = resultSet.getInt("qtdEstoque");
                 BigDecimal produtoValor = resultSet.getBigDecimal("preco");
                 boolean produtoStatus = resultSet.getBoolean("status");
+                String produtoImage = resultSet.getString("image");
 
-                Produto produto = new Produto(produtoId, produtoNome, produtoQtdEstoque, produtoValor, produtoStatus);
+                Produto produto = new Produto(produtoId, produtoNome, produtoQtdEstoque, produtoValor, produtoStatus, produtoImage);
 
                 produtos.add(produto);
 
-                System.out.println(produtos.get(0).getNome() + produtos.get(0).getId() + produtos.get(0).getStatus() + produtos.get(0).getPreco());
-
+                System.out.println(produto.getImage());
 
             }
-
-            System.out.println(produtos.get(0).getNome() + produtos.get(0).getId() + produtos.get(0).getStatus() + produtos.get(0).getPreco());
-            System.out.println(produtos.get(1));
 
             System.out.println("success in select * produto");
 
@@ -105,7 +106,9 @@ public class ProdutoDAO {
                         resultSet.getString("nome"),
                         resultSet.getInt("qtdEstoque"),
                         resultSet.getBigDecimal("preco"),
-                        resultSet.getBoolean("status")
+                        resultSet.getBoolean("status"),
+                        resultSet.getString("image")
+
                 );
             }
         } catch (SQLException e) {
@@ -149,9 +152,13 @@ public class ProdutoDAO {
                 int produtoQtdEstoque = resultSet.getInt("qtdEstoque");
                 BigDecimal produtoValor = resultSet.getBigDecimal("preco");
                 boolean produtoStatus = resultSet.getBoolean("status");
-                //PlanoServlet.setPlanoId(plano);
+                String produtoImage = resultSet.getString("image");
 
-                produto = new Produto(produtoId, produtoNome, produtoQtdEstoque, produtoValor, produtoStatus);
+                produto = new Produto(produtoId, produtoNome, produtoQtdEstoque, produtoValor, produtoStatus, produtoImage);
+            }
+
+            if (produto == null) {
+                produto = new Produto(resultSet.getString("id"), resultSet.getString("nome"), resultSet.getInt("qtdEstoque"), resultSet.getBigDecimal("preco"), resultSet.getBoolean("status"), resultSet.getString("image"));
             }
 
             System.out.println("Sucesso na consulta ao produto");
@@ -159,9 +166,7 @@ public class ProdutoDAO {
         } catch (SQLException e) {
             System.err.println("Erro na conexão com o banco de dados: " + e.getMessage());
         }
-        if (produto == null) {
-            produto = new Produto(); // produto vazio em caso de falha na consulta
-        }
+
 
         return produto;
     }

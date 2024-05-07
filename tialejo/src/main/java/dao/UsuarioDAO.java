@@ -142,4 +142,8 @@ public class UsuarioDAO {
             throw new RuntimeException("Erro ao atualizar produto", e);
         }
     }
+
+    public void criarUsuario(Usuario usuario) {
+
+    }
 }

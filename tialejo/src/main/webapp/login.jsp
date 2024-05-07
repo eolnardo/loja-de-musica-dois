@@ -37,7 +37,7 @@
     <input type="password" id="senha" name="senha">
 
     <button type="submit">Entrar</button>
-
+    <a href="/criar-cliente" type="submit">Cadastre-se!</a>
 </form>
                 </div>
             </div>

@@ -443,3 +443,7 @@ td {
 }
 
 .input-box label
+
+.standardsize{
+    width: 500px;
+}

@@ -46,7 +46,7 @@
         <img src="assets/images/undraw_Dog_walking_re_l61p.png" alt="">
     </div>
     <div class="form">
-        <form action="criar-produto" method="post"  enctype="multipart/form-data">
+        <form action="criar-produto" method="post">
             <div class="form-header">
                 <div class="title">
                     <h1>Cadastrar Produto</h1>
@@ -74,11 +74,14 @@
                     <label for="qtdEstoque">Quantiade em Estoque:</label>
                     <input type="text" id="qtdEstoque" name="qtdEstoque" value="${param.qtdEstoque}" required><br><br>
                 </div>
-                <div>
-                    <label for="image">Escolher imagem</label>
-                    <input type="file" name="image" id="image" accept="image/png, image/jpeg" onchange="previa(event)"/>
-                    <img id="previa" src="#" alt="Prévia da imagem" style="max-width: 300px; max-height: 200px; display: none;"/>
-                </div>
+                <form enctype="multipart/form-data">
+                    <div>
+                        <label for="image">Upload de imagem</label>
+                        <input type="file" name="image" id="image" accept="image/png, image/jpeg" onchange="previewImage(event)"/>
+                        <img id="preview" src="#" alt="Prévia da imagem" style="max-width: 300px; max-height: 200px; display: none;"/>
+                    </div>
+                    <button type="submit" class="botao verde" style="margin-left: 10px">Confirma imagem</button>
+                </form>
                 <div class="input-box">
                     <input type="hidden" id="id" name="id" value="${param.id}">
                 </div>
@@ -99,22 +102,22 @@
 <script src="assets/js/menu.js"></script>
 
 <script>
-    function previa(event) {
+    function previewImage(event) {
         var input = event.target;
-        var previa = document.getElementById("previa");
+        var preview = document.getElementById("preview");
 
         if (input.files && input.files[0]) {
             var reader = new FileReader();
 
             reader.onload = function (e) {
-                previa.src = e.target.result;
-                previa.style.display = "block";
+                preview.src = e.target.result;
+                preview.style.display = "block";
             };
 
             reader.readAsDataURL(input.files[0]);
         } else {
-            previa.src = "#";
-            previa.style.display = "none";
+            preview.src = "#";
+            preview.style.display = "none";
         }
     }
 </script>

@@ -1,9 +1,8 @@
+servlet\produto\TelaInicialServlet.class
 servlet\logincliente\LogoutServlet.class
 servlet\logincliente\LoginServlet.class
 servlet\produto\AlterarStatusProdutoServlet.class
 dao\ProdutoDAO.class
-servlet\cliente\CriarClienteServlet.class
-model\Cliente$Genero.class
 model\Usuario.class
 servlet\config\ConnectionPoolConfig.class
 servlet\loginbackoffice\LogoutServlet.class

@@ -10,7 +10,14 @@ public class Usuario {
     private String senha;
     private String confirmaSenha;
 
-    public Usuario() {
+    public Usuario(String id, String nome, String email, String grupo, String cpf, String senha, String confirmaSenhaa  ) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        this.cpf = cpf;
+        this.grupo = grupo;
+        this.senha = senha;
+        this.confirmaSenha = confirmaSenha;
     }
 
     public Usuario(String id, String nome, String email, String grupo, String cpf, String senha, String confirmaSenha, boolean status) {
@@ -36,9 +43,6 @@ public class Usuario {
         this.email = email;
         this.status = status;
         this.grupo = grupo;
-    }
-
-    public Usuario(String email, String senha, String confirmaSenha) {
     }
 
     public String getId() {

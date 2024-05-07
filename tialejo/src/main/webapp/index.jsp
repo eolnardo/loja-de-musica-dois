@@ -1,37 +1,69 @@
-<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-BR" xmlns:th="http://www.w3.org/1999/xhtml">
+
 <head>
-    <title>Tialejo ® - Login</title>
+    <title>Tialejo ® - Sua Loja de Música!</title>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="stylesheet" href="https://unicons.iconscout.com/release/v2.1.9/css/unicons.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="static/css/style.css">
-    <link rel="stylesheet" href="static/css/carrossel.css">
-    <link rel="shortcut icon" href="@{/images/cd.ico}" type="image/x-icon">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
-          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+          integrity="sha512-VuwNeOLQQ1vXtZgTkqK3zUFJAN3Uw8byEUVqyIZJc6DvZ4FYvZMzUKcFE4fsVHmzUchidreL5x5xKWszxiVjQg=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="shortcut icon" href="img/cd.ico" type="image/x-icon">
 </head>
+
 <body>
+<nav class="navbar">
+    <a href="/carregar-tela-inicial">
+        <div class="left-navbar">
+            <img  src="static/img/cd.ico" alt="Logo">
+            <h1 class="mt-2">Tialejo ®</h1>
+        </div>
+    </a>
+    <c:choose>
+        <c:when test="${sessionScope.loggedCliente != null}">
+            <a href="/logout-cliente" class="btn mt-4" style="z-index: 999">Sair</a>
+        </c:when>
+        <c:otherwise>
+            <div class="right-navbar">
+                <i class="fa-solid fa-cart-shopping mt-4"></i>
+                <a href="/login-cliente" class="btn mt-4" style="z-index: 999">>Login ou Cadastre-se</a>
+            </div>
+        </c:otherwise>
+    </c:choose>
 
-<form action="/login-cliente" method="post">
+</nav>
 
-    <span>${requestScope.message}</span>
+<section id="secao-produtos">
+    <form action="/carregar-tela-inicial" method="get">
+        <c:forEach var="produto" items="${produtos}">
+        <ul>
+                <li>
+                    <div class="card col-11 bg-body-tertiary">
+                        <div class="card-info">
+                            <img src="${produto.image}" class="img-principal" alt="imagem principal do produto">
+                            <h3>${produto.nome}</h3>
+                            <span style="display: flex; gap: 5px; justify-content: center;">
+                        <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                        <h4>${produto.avaliacao}</h4>
+                      </span>
+                            <span style="display: flex; gap: 5px; justify-content: center;">
+                        <i class="fa-solid fa-hand-holding-dollar" style="color: #74C0FC;"></i>
+                        <h4>${produto.preco}</h4>
+                      </span>
+                                <a href="/visualizar?id=${produto.id}" class="btn mt-1 align-self-center">${produto.descricao}</a>
+                        </div>
+                    </div>
+                </li>
+        </ul
+        </c:forEach>
+    </form>
+</section>
 
-    <br>
-
-    <label for="email">E-mail:</label>
-    <input type="text" id="email" name="email">
-
-    <br>
-
-    <label for="senha">Senha:</label>
-    <input type="password" id="senha" name="senha">
-
-    <button type="submit">Entrar</button>
-
-</form>
+<script src="https://kit.fontawesome.com/eaae749ef3.js" crossorigin="anonymous"></script>
 </body>
+
 </html>

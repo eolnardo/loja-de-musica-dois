@@ -11,13 +11,18 @@ public class Produto {
     private BigDecimal preco;
     private int qtdEstoque;
     private boolean status;
-    private String imagem;
+    private String image;
 
-    public Produto() {
-
+    public Produto(String id, String nome, int qtdEstoque, BigDecimal preco, boolean status, String image) {
+        this.id = id;
+        this.nome = nome;
+        this.qtdEstoque = qtdEstoque;
+        this.preco = preco;
+        this.status = status;
+        this.image = image;
     }
 
-    public Produto(String id, String nome, String avaliacao, String descricao, BigDecimal preco, int qtdEstoque, boolean status, String imagem) {
+    public Produto(String id, String nome, String avaliacao, String descricao, BigDecimal preco, int qtdEstoque, boolean status, String image) {
         this.id = id;
         this.nome = nome;
         this.avaliacao = avaliacao;
@@ -25,7 +30,7 @@ public class Produto {
         this.preco = preco;
         this.qtdEstoque = qtdEstoque;
         this.status = status;
-        this.imagem = imagem;
+        this.image = image;
     }
 
     public Produto(String id, String nome, int qtdEstoque, BigDecimal preco, boolean status) {
@@ -92,11 +97,11 @@ public class Produto {
         this.status = status;
     }
 
-    public String getImagem() {
-        return imagem;
+    public String getImage() {
+        return image;
     }
 
-    public void setImagem(String imagem) {
-        this.imagem = imagem;
+    public void setImage(String image) {
+        this.image = image;
     }
 }

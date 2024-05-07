@@ -18,61 +18,51 @@
 
 <body>
 <nav class="navbar">
-    <a href="@{'/'}">
+    <a href="/carregar-tela-inicial">
         <div class="left-navbar">
-
-            <img  src="@{/images/cd.ico}" alt="Logo">
+            <img  src="static/img/cd.ico" alt="Logo">
             <h1 class="mt-2">Tialejo ®</h1>
-
         </div>
     </a>
     <div class="right-navbar">
         <form action="encontrar-todos-produtos" method="get">
             <button  class="btn mt-4" style="z-index: 999">Voltar</button>
         </form>
-        <c:if test="${sessionScope.loggedUsuario != null}">
-            <a href="/logout" class="btn mt-4" style="z-index: 999">Sair</a>
-        </c:if>
-
+        <c:choose>
+            <c:when test="${sessionScope.loggedUsuario != null}">
+                <a href="/logout-cliente" class="btn mt-4" style="z-index: 999">Sair</a>
+            </c:when>
+            <c:otherwise>
+                <a href="/login-cliente" class="btn mt-4" style="z-index: 999">Login</a>
+            </c:otherwise>
+        </c:choose>
     </div>
 </nav>
-<div class="maior">
-    <div class="produto">
-        <div class="carrousel" data-carrousel>
-            <div class="slides" data-slides-container>
-                <div class="slide">
-                    <div class="conteudo">
-                        <img src="@{/static/images/blue.jpg}" alt="GAME">
-                        <h2>oie</h2>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div class="conteudo">
-                        <img src="../static/images/product.png"  alt="imagem principal do produto">
-                        <h2>oie2</h2>
-                    </div>
-                </div>
-                <div class="slide">
-                    <div class="conteudo">
-                        <h2>oie3</h2>
+
+
+    <form action="/visualizar" method="get">
+        <div class="maior">
+        <div class="produto">
+            <div class="carrousel" data-carrousel>
+                <div class="slides" data-slides-container>
+                    <div class="slide">
+                        <div class="conteudo" >
+                            <img class="standardsize" src="${produto.image}" alt="Imagem do Produto">
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
-    </div>
-    <div class="carrousel-botoes">
-        <button class="carrousel-botoes botao-anterior " data-carrousel-botao-anterior><span
-                class="fa-solid fa-circle-chevron-left"></span></button>
-        <button class="carrousel-botoes botao-proximo " data-carrousel-botao-proximo><span
-                class="fa-solid fa-circle-chevron-right"></span></button>
-    </div>
-    <form action="/visualizar" method="get">
+        <div class="carrousel-botoes">
+            <button class="carrousel-botoes botao-anterior " data-carrousel-botao-anterior><span
+                    class="fa-solid fa-circle-chevron-left"></span></button>
+            <button class="carrousel-botoes botao-proximo " data-carrousel-botao-proximo><span
+                    class="fa-solid fa-circle-chevron-right"></span></button>
+        </div>
         <div>
             <div class="col-12 text-center align-self-center py-5" style="color: rgb(180, 14, 235)">
-                <label >Nome</label>
-                    <h2>
+                <label>Nome</label>
                         <input value="${produto.nome}" readonly>
-                    </h2>
             </div>
             <div class="informações">
                 <h3 style="color: rgb(234, 18, 18)">Preço: <input value="${produto.preco}" readonly></h3>
@@ -85,8 +75,8 @@
             </div>
             <button class="btn mt-4">Comprar</button>
         </div>
+        </div>
     </form>
-</div>
 <script src="@{js/carrousel.js}"></script>
 
 </body>

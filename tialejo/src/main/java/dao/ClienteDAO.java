@@ -5,11 +5,54 @@ import servlet.config.ConnectionPoolConfig;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
-import java.sql.SQLException;
+import java.sql.ResultSet;
 
 public class ClienteDAO {
+    public boolean verificarCredenciais(Cliente cliente) {
 
-    public void criarCliente(Cliente cliente){
+        String SQL = "SELECT * FROM Cliente WHERE email = ?";
+
+        try {
+
+            Connection connection = ConnectionPoolConfig.getConnection();
+
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+
+            preparedStatement.setString(1, cliente.getEmail());
+            ResultSet resultSet = preparedStatement.executeQuery();
+
+            System.out.println("success in select email");
+
+            while (resultSet.next()) {
+
+                String senha = resultSet.getString("senha");
+                String confirmaSenha = resultSet.getString("senha");
+                cliente.setNome(resultSet.getString("nome"));
+                cliente.setId(resultSet.getString("id"));
+
+
+                if (senha.equals(cliente.getSenha()) && confirmaSenha.equals(cliente.getConfirmaSenha())) {
+                    return true;
+
+                }
+
+            }
+
+            connection.close();
+
+            return false;
+
+        } catch (Exception e) {
+
+            System.out.println("Error: " + e.getMessage());
+
+            return false;
+
+        }
+
+    }
+
+     public void criarCliente(Cliente cliente){
 
         String SQL = "INSERT INTO Cliente (nome, email, nascimento, genero, endereco, cpf, senha, confirmarSenha) VALUES (?, ?, ?, ?, ?, ?, ?,?)";
 
