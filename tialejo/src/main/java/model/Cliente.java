@@ -4,7 +4,7 @@ public class Cliente {
     private String id;
     private String nome;
     private String email;
-    private String telefone;
+    private String DataNasimento;
     private String genero;
     private String cpf;
     private String senha;
@@ -19,6 +19,20 @@ public class Cliente {
         this.email = email;
         this.senha = senha;
         this.confirmaSenha = confirmaSenha;
+    }
+
+
+
+    public Cliente(String id, String nome, String email, String dataNasimento, String genero, String cpf, String senha, String confirmaSenha, String enderecoEntrega) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        DataNasimento = dataNasimento;
+        this.genero = genero;
+        this.cpf = cpf;
+        this.senha = senha;
+        this.confirmaSenha = confirmaSenha;
+        this.enderecoEntrega = enderecoEntrega;
     }
 
     public String getId() {
@@ -45,13 +59,9 @@ public class Cliente {
         this.email = email;
     }
 
-    public String getTelefone() {
-        return telefone;
-    }
+    public String getDataNasimento() {return DataNasimento;}
 
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
+    public void setDataNasimento(String dataNasimento) {DataNasimento = dataNasimento;}
 
     public String getGenero() {
         return genero;

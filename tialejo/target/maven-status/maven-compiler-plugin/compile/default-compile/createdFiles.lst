@@ -3,6 +3,7 @@ servlet\logincliente\LogoutServlet.class
 servlet\logincliente\LoginServlet.class
 servlet\produto\AlterarStatusProdutoServlet.class
 dao\ProdutoDAO.class
+servlet\cliente\CriarClienteServlet.class
 model\Usuario.class
 servlet\config\ConnectionPoolConfig.class
 servlet\loginbackoffice\LogoutServlet.class

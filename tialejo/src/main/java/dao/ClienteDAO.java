@@ -6,6 +6,7 @@ import servlet.config.ConnectionPoolConfig;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class ClienteDAO {
     public boolean verificarCredenciais(Cliente cliente) {
@@ -63,12 +64,12 @@ public class ClienteDAO {
 
             preparedStatement.setString(1, cliente.getNome());
             preparedStatement.setString(2, cliente.getEmail());
-            preparedStatement.setString(3, cliente.getNascimento());
-            preparedStatement.setString(4, cliente.getGenero().name());
-            preparedStatement.setString(5, cliente.getEndereco());
+            preparedStatement.setString(3, cliente.getDataNasimento());
+            preparedStatement.setString(4, cliente.getGenero());
+            preparedStatement.setString(5, cliente.getEnderecoEntrega());
             preparedStatement.setString(6, cliente.getCpf());
             preparedStatement.setString(7, cliente.getSenha());
-            preparedStatement.setString(8, cliente.getConfirmarSenha());
+            preparedStatement.setString(8, cliente.getConfirmaSenha());
 
             preparedStatement.execute();
 
@@ -79,4 +80,6 @@ public class ClienteDAO {
             throw new RuntimeException(e);
         }
     }
+
+
 }

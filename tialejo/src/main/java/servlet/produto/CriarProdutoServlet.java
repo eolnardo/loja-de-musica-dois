@@ -25,7 +25,7 @@
     public class CriarProdutoServlet extends HttpServlet {
 
         @Override
-        protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws IOException {
+        protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws  IOException {
 
             Map<String, String> parameters = uploadImage(req);
 
