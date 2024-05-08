@@ -153,8 +153,11 @@ public class ProdutoDAO {
                 BigDecimal produtoValor = resultSet.getBigDecimal("preco");
                 boolean produtoStatus = resultSet.getBoolean("status");
                 String produtoImage = resultSet.getString("image");
+                String produtoDescricao = resultSet.getString("descricao");
+                String produtoAvaliacao = resultSet.getString("avaliacao");
 
-                produto = new Produto(produtoId, produtoNome, produtoQtdEstoque, produtoValor, produtoStatus, produtoImage);
+
+                produto = new Produto(produtoId, produtoNome, produtoQtdEstoque, produtoValor, produtoStatus, produtoImage, produtoAvaliacao, produtoDescricao);
             }
 
             if (produto == null) {

@@ -72,7 +72,7 @@
                     </c:if>
                 </td>
                 <td>
-                    <form action="/visualizar" method="get">
+                    <form action="/visualizar-produto" method="get">
                         <input type="hidden" name="id" value="${produto.id}">
                         <button type="submit">Visualizar</button>
                     </form>

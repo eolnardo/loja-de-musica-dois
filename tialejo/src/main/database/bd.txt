@@ -35,7 +35,7 @@ CREATE TABLE Cliente (
     confirmaSenha VARCHAR(100) NOT NULL,
     enderecoFaturamento VARCHAR(255) NOT NULL,
     enderecoEntrega VARCHAR(255) NOT NULL,
-    dataNascimento DATE,
+    dataNascimento VARCHAR(255) NOT NULL,
     CONSTRAINT nome_2_palavras CHECK (nome REGEXP '^[a-zA-Z]+ [a-zA-Z]+$'),
     CONSTRAINT senha_unique UNIQUE (senha)
 );

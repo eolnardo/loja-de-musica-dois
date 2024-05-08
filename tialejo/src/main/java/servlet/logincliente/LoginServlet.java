@@ -38,7 +38,7 @@ public class LoginServlet extends HttpServlet {
 
             req.getSession().setAttribute("loggedCliente", email);
 
-            resp.sendRedirect("index.jsp");
+            resp.sendRedirect("/carregar-tela-inicial");
 
         } else {
 

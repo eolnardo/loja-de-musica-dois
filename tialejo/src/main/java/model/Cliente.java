@@ -35,6 +35,19 @@ public class Cliente {
         this.enderecoEntrega = enderecoEntrega;
     }
 
+    public Cliente(String id, String nome, String email, String dataNasimento, String genero, String cpf, String senha, String confirmaSenha, String enderecoEntrega, String enderecoFaturamento) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        DataNasimento = dataNasimento;
+        this.genero = genero;
+        this.cpf = cpf;
+        this.senha = senha;
+        this.confirmaSenha = confirmaSenha;
+        this.enderecoEntrega = enderecoEntrega;
+        this.enderecoFaturamento = enderecoFaturamento;
+    }
+
     public String getId() {
         return id;
     }

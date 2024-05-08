@@ -54,10 +54,10 @@
             </div>
         </div>
         <div class="carrousel-botoes">
-            <button class="carrousel-botoes botao-anterior " data-carrousel-botao-anterior><span
-                    class="fa-solid fa-circle-chevron-left"></span></button>
-            <button class="carrousel-botoes botao-proximo " data-carrousel-botao-proximo><span
-                    class="fa-solid fa-circle-chevron-right"></span></button>
+            <a href="/visualizar?id=${produto.id}" class="carrousel-botoes botao-anterior " data-carrousel-botao-anterior><span
+                    class="fa-solid fa-circle-chevron-left"></span></a>
+            <a href="/visualizar?id=${produto.id}"  class="carrousel-botoes botao-proximo " data-carrousel-botao-proximo><span
+                    class="fa-solid fa-circle-chevron-right"></span></a>
         </div>
         <div>
             <div class="col-12 text-center align-self-center py-5" style="color: rgb(180, 14, 235)">
@@ -70,14 +70,13 @@
 
             </div>
             <div class="informações">
-                <h3 style="color: rgb(234, 18, 18)">Descrição:  <input value="${produto.descricao}" readonly></h3>
-
+                <h3 style="color: rgb(234, 18, 18)">Descrição: ${produto.descricao}</h3>
             </div>
-            <button class="btn mt-4">Comprar</button>
+            <a href="adicionar-carrinho" class="btn mt-4">Comprar</a>
         </div>
         </div>
     </form>
-<script src="@{js/carrousel.js}"></script>
+<script src="static/js/carrousel.js"></script>
 
 </body>
 

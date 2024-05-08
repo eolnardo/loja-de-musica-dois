@@ -7,6 +7,9 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 public class ClienteDAO {
     public boolean verificarCredenciais(Cliente cliente) {
@@ -55,7 +58,7 @@ public class ClienteDAO {
 
      public void criarCliente(Cliente cliente){
 
-        String SQL = "INSERT INTO Cliente (nome, email, nascimento, genero, endereco, cpf, senha, confirmarSenha) VALUES (?, ?, ?, ?, ?, ?, ?,?)";
+        String SQL = "INSERT INTO Cliente (nome, email, datanascimento, genero, enderecoEntrega, enderecoFaturamento, cpf, senha, confirmaSenha, telefone) VALUES (?, ?, ?, ?, ?, ?, ?,?,?,?)";
 
         try{
 
@@ -67,9 +70,11 @@ public class ClienteDAO {
             preparedStatement.setString(3, cliente.getDataNasimento());
             preparedStatement.setString(4, cliente.getGenero());
             preparedStatement.setString(5, cliente.getEnderecoEntrega());
-            preparedStatement.setString(6, cliente.getCpf());
-            preparedStatement.setString(7, cliente.getSenha());
-            preparedStatement.setString(8, cliente.getConfirmaSenha());
+            preparedStatement.setString(6, cliente.getEnderecoFaturamento());
+            preparedStatement.setString(7, cliente.getCpf());
+            preparedStatement.setString(8, cliente.getSenha());
+            preparedStatement.setString(9, cliente.getConfirmaSenha());
+            preparedStatement.setString(10, cliente.getConfirmaSenha());
 
             preparedStatement.execute();
 
@@ -81,5 +86,4 @@ public class ClienteDAO {
         }
     }
 
-
-}
+    }

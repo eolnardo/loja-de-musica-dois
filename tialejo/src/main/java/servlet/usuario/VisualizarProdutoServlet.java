@@ -1,4 +1,4 @@
-package servlet.produto;
+package servlet.usuario;
 
 
 import dao.ProdutoDAO;
@@ -10,8 +10,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet("/visualizar")
+@WebServlet("/visualizar-produto")
 public class VisualizarProdutoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -22,7 +23,7 @@ public class VisualizarProdutoServlet extends HttpServlet {
 
         req.setAttribute("produto", produto);
 
-        req.getRequestDispatcher("produto.jsp").forward(req, resp);
+        req.getRequestDispatcher("detalhes.jsp").forward(req, resp);
 
     }
 }

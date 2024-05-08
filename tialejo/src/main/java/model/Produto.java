@@ -33,12 +33,26 @@ public class Produto {
         this.image = image;
     }
 
+
+
     public Produto(String id, String nome, int qtdEstoque, BigDecimal preco, boolean status) {
         this.id = id;
         this.nome = nome;
         this.qtdEstoque = qtdEstoque;
         this.preco = preco;
         this.status = status;
+    }
+
+    public Produto(String id, String nome, int qtdEstoque, BigDecimal preco, boolean status, String image, String avaliacao, String descricao) {
+        this.id = id;
+        this.nome = nome;
+        this.qtdEstoque = qtdEstoque;
+        this.preco = preco;
+        this.status = status;
+        this.avaliacao = avaliacao;
+        this.descricao = descricao;
+
+        this.image = image;
     }
 
     public String getId() {
