@@ -23,6 +23,13 @@
             <h1 class="mt-2">Tialejo ®</h1>
         </div>
     </a>
+
+    <form action="atualizar-cadastro-cliente" method="get">
+        <li>
+            <button type="submit">Meu Cadastro</button>
+        </li>
+    </form>
+
     <c:choose>
         <c:when test="${sessionScope.loggedCliente != null}">
             <a href="/logout-cliente" class="btn mt-4" style="z-index: 999">Sair</a>

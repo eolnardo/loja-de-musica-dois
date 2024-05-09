@@ -12,7 +12,21 @@ public class Cliente {
     private String enderecoFaturamento;
     private String enderecoEntrega;
 
-    public Cliente() {
+
+    public Cliente(String nome, String genero, String dataNasimento, String senha, String confirmaSenha, String id) {
+        this.nome = nome;
+        DataNasimento = dataNasimento;
+        this.genero = genero;
+        this.senha = senha;
+        this.confirmaSenha = confirmaSenha;
+        this.id = id;
+    }
+
+    public Cliente(String nome, String genero, String dataNasimento, String id) {
+        this.nome = nome;
+        DataNasimento = dataNasimento;
+        this.genero = genero;
+        this.id = id;
     }
 
     public Cliente(String email, String senha, String confirmaSenha) {
@@ -122,5 +136,16 @@ public class Cliente {
 
     public void setEnderecoEntrega(String enderecoEntrega) {
         this.enderecoEntrega = enderecoEntrega;
+    }
+
+    @Override
+    public String toString() {
+        return "Cliente{" +
+                "id='" + id + '\'' +
+                ", nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", DataNasimento='" + DataNasimento + '\'' +
+                ", genero='" + genero + '\'' +
+                '}';
     }
 }

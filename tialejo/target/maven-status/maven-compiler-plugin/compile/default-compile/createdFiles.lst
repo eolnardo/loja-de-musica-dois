@@ -1,6 +1,7 @@
 servlet\compra\CarrinhoServlet.class
 servlet\cliente\CriarClienteServlet.class
 model\Usuario.class
+servlet\cliente\AtualizarCadastroServlet.class
 model\Cliente.class
 model\Produto.class
 servlet\usuario\CriarUsuarioServlet.class
