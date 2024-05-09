@@ -13,6 +13,8 @@ import java.io.IOException;
 @WebServlet("/login-cliente")
 public class LoginServlet extends HttpServlet {
 
+    static private Cliente cliente;
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
@@ -29,6 +31,8 @@ public class LoginServlet extends HttpServlet {
         String grupo = req.getParameter("grupo");
 
         Cliente cliente = new Cliente(email, senha, confirmaSenha);
+
+        setCliente(cliente);
 
         System.out.println(grupo);
 
@@ -50,4 +54,11 @@ public class LoginServlet extends HttpServlet {
 
     }
 
+    public static Cliente getCliente() {
+        return cliente;
+    }
+
+    public static void setCliente(Cliente cliente) {
+        LoginServlet.cliente = cliente;
+    }
 }

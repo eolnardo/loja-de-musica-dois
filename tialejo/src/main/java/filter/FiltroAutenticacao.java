@@ -24,6 +24,7 @@ public class FiltroAutenticacao implements Filter {
 
         } else {
             isUserAdmin(httpServletRequest);
+            eMudar(httpServletRequest);
             chain.doFilter(servletRequest, servletResponse);
 
         }
@@ -42,6 +43,12 @@ public class FiltroAutenticacao implements Filter {
     private boolean isUserAdmin(HttpServletRequest httpServletRequest) {
 
         return  httpServletRequest.getSession().getAttribute("admin") == null;
+
+    }
+
+    private boolean eMudar(HttpServletRequest httpServletRequest) {
+
+        return  httpServletRequest.getSession().getAttribute("mudar") == null;
 
     }
 

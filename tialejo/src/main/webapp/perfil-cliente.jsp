@@ -109,33 +109,27 @@
 
           <h4 class="mb-3 pb-3">Meu Perfil</h4>
           <div class="form">
-            <form action="/atualizar-cadastro-cliente" method="post">
+            <form action="/criar-cliente" method="post">
               <div class="form-header">
               </div>
               <div class="input-group">
                 <div class="input-box">
                   <div class="input-box">
                     <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome" value="${cliente.nome}" readonly><br><br>
+                    <input type="text" id="nome" name="nome" value="${cliente.nome}"><br><br>
                   </div>
                   <div class="input-box">
                     <label for="email">E-mail:</label>
                     <input type="text" id="email" name="email" value="${cliente.email}" readonly><br><br>
                   </div>
                   <label for="dataNascimento">Data de Nascimento:</label>
-                  <input type="text" id="dataNascimento" name="dataNascimento" value="${cliente.dataNascimento}" readonly><br><br>
+                  <input type="text" id="dataNascimento" name="dataNascimento" value="${cliente.dataNascimento}"><br><br>
                 </div>
                 <script>
                   $( function() {
                     $( "#dataNascimento" ).datepicker();
                   } );
                 </script>
-                <div class="input-box">
-                  <label for="cepFaturamento">CEP do Endereço de Faturamento:</label>
-                  <input type="text" id="cepFaturamento" name="cepFaturamento" value="${cliente.cepFaturamento}" readonly>
-                  <button type="button" onclick="consultarCEP(document.getElementById('cepFaturamento').value, 'enderecoFaturamento')">Consultar</button>
-                  <br><br>
-                </div>
                 <div class="input-box">
                   <label for="enderecoFaturamento">Endereço de Faturamento:</label>
                   <input type="text" id="enderecoFaturamento" name="enderecoFaturamento" value="${cliente.enderecoFaturamento}" readonly>
@@ -145,13 +139,6 @@
                   <label for="complementoFaturamento">Complemento do Endereço de Faturamento:</label>
                   <input type="text" id="complementoFaturamento" name="complementoFaturamento"><br><br>
                 </div>
-                <div class="input-box">
-                  <label for="cepEntrega">CEP do Endereço de Entrega:</label>
-                  <input type="text" id="cepEntrega" name="cepEntrega" value="${cliente.cepEntrega}" readonly>
-                  <button type="button" onclick="consultarCEP(document.getElementById('cepEntrega').value, 'enderecoEntrega')">Consultar</button>
-                  <br><br>
-                </div>
-
                 <div class="input-box">
                   <label for="enderecoEntrega">Endereço de Entrega:</label>
                   <button type="button" onclick="copiarEndereco()">Copiar Endereço de Faturamento</button>
@@ -184,7 +171,7 @@
                 </div>
                 <div class="input-box">
                   <label for="confirmarSenha">Confirmar Senha:</label>
-                  <input type="password" id="confirmarSenha" name="confirmarSenha" value="${cliente.confirmarSenha}" readonly ><br><br>
+                  <input type="password" id="confirmarSenha" name="confirmarSenha" value="${cliente.confirmaSenha}" readonly ><br><br>
                 </div>
                 <div class="input-box">
                   <input type="hidden" id="id" name="id" value="${cliente.id}">
@@ -193,10 +180,10 @@
 
               <div class="cadastrar-button">
                 <div>
-                  <button class="botao azul" ><a class="azul" href="index.jsp">Voltar</a></button>
+                  <button class="botao azul" ><a class="azul" href="index.jsp">Cancelar</a></button>
                 </div>
                 <div>
-                  <button type="submit" class="botao verde" style="margin-left: 10px">Cadastrar</button>
+                  <button type="submit" class="botao verde" style="margin-left: 10px">Editar Cadastro</button>
                 </div>
               </div>
             </form>

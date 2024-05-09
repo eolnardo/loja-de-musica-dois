@@ -28,14 +28,15 @@ CREATE TABLE Cliente (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
-    telefone VARCHAR(20) NOT NULL,
     genero VARCHAR(10),
+    cepEndereco VARCHAR(10),
+    cepFaturamento VARCHAR(10),
     cpf VARCHAR(14) UNIQUE NOT NULL,
     senha VARCHAR(100) NOT NULL,
     confirmaSenha VARCHAR(100) NOT NULL,
     enderecoFaturamento VARCHAR(255) NOT NULL,
     enderecoEntrega VARCHAR(255) NOT NULL,
-    dataNascimento VARCHAR(255) NOT NULL,
+    dataNascimento DATE,
     CONSTRAINT nome_2_palavras CHECK (nome REGEXP '^[a-zA-Z]+ [a-zA-Z]+$'),
     CONSTRAINT senha_unique UNIQUE (senha)
 );

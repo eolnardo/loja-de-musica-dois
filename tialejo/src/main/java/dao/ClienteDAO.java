@@ -7,7 +7,7 @@ import java.sql.*;
 
 public class ClienteDAO {
 
-    static String id;
+    static private Cliente clienteEstatico;
 
     public boolean verificarCredenciais(Cliente cliente) {
 
@@ -27,13 +27,24 @@ public class ClienteDAO {
             while (resultSet.next()) {
 
                 String senha = resultSet.getString("senha");
-                String confirmaSenha = resultSet.getString("senha");
-                cliente.setNome(resultSet.getString("nome"));
-                cliente.setId(resultSet.getString("id"));
+                String confirmaSenha = resultSet.getString("confirmaSenha");
+                String nome = resultSet.getString("nome");
+                String cpf = resultSet.getString("cpf");
+                String enderecoFaturamento = resultSet.getString("enderecoFaturamento");
+                String enderecoEntrega = resultSet.getString("enderecoEntrega");
+                String genero = resultSet.getString("genero");
+                String id = resultSet.getString("id");
+                String dataNascimento = resultSet.getString("dataNascimento");
 
-                setId(resultSet.getString("id"));
+                Cliente clienteAtual = new Cliente(id, nome, cliente.getEmail(), dataNascimento, genero, cpf, senha, confirmaSenha, enderecoEntrega, enderecoFaturamento);
+
+                setCliente(clienteAtual);
 
                 if (senha.equals(cliente.getSenha()) && confirmaSenha.equals(cliente.getConfirmaSenha())) {
+
+
+                    System.out.println(cliente.getNome()+cliente.getId());
+
                     return true;
 
                 }
@@ -56,7 +67,7 @@ public class ClienteDAO {
 
     public void criarCliente(Cliente cliente) {
 
-        String SQL = "INSERT INTO Cliente (nome, email, datanascimento, genero, enderecoEntrega, enderecoFaturamento, cpf, senha, confirmaSenha, telefone) VALUES (?, ?, ?, ?, ?, ?, ?,?,?,?)";
+        String SQL = "INSERT INTO Cliente (nome, email, datanascimento, genero, enderecoEntrega, enderecoFaturamento, cpf, senha, confirmaSenha) VALUES ( ?, ?, ?, ?, ?, ?,?,?,?)";
 
         try {
 
@@ -65,14 +76,13 @@ public class ClienteDAO {
 
             preparedStatement.setString(1, cliente.getNome());
             preparedStatement.setString(2, cliente.getEmail());
-            preparedStatement.setString(3, cliente.getDataNasimento());
+            preparedStatement.setString(3, cliente.getdataNascimento());
             preparedStatement.setString(4, cliente.getGenero());
             preparedStatement.setString(5, cliente.getEnderecoEntrega());
             preparedStatement.setString(6, cliente.getEnderecoFaturamento());
             preparedStatement.setString(7, cliente.getCpf());
             preparedStatement.setString(8, cliente.getSenha());
             preparedStatement.setString(9, cliente.getConfirmaSenha());
-            preparedStatement.setString(10, cliente.getConfirmaSenha());
 
             preparedStatement.execute();
 
@@ -97,9 +107,9 @@ public class ClienteDAO {
             preparedStatement.setString(1, cliente.getNome());
             preparedStatement.setString(2, cliente.getSenha());
             preparedStatement.setString(3, cliente.getConfirmaSenha());
-            preparedStatement.setString(4, cliente.getDataNasimento());
+            preparedStatement.setString(4, cliente.getdataNascimento());
             preparedStatement.setString(5, cliente.getGenero());
-            preparedStatement.setString(6, getId());
+            preparedStatement.setString(6, cliente.getId());
             preparedStatement.execute();
 
             System.out.println("success in atualizar cadastro cliente");
@@ -115,59 +125,59 @@ public class ClienteDAO {
 
     }
 
-    public Cliente encontrarClientePorId() {
-        String SQL = "SELECT * FROM CLIENTE WHERE id = ?";
+//    public Cliente encontrarClientePorId(String id) {
+//        String SQL = "SELECT * FROM CLIENTE WHERE id = ?";
+//
+//        Cliente cliente = null;
+//
+//        try {
+//
+//            Connection connection = ConnectionPoolConfig.getConnection();
+//
+//            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+//            preparedStatement.setString(1, id);
+//
+//            ResultSet resultSet = preparedStatement.executeQuery();
+//
+//            System.out.println(resultSet.getString("nome"));
+//
+//            System.out.println("success in select email");
+//
+//
+//            while (resultSet.next()) { // Verifica se há uma linha no resultado
+//
+//                cliente.setNome(resultSet.getString("nome"));
+//                cliente.setGenero(resultSet.getString("genero"));
+//                cliente.setDataNasimento(resultSet.getString("dataNascimento"));
+//                cliente.setCpf(resultSet.getString("cpf"));
+//                cliente.setEnderecoEntrega(resultSet.getString("enderecoEntrega"));
+//                cliente.setEnderecoFaturamento(resultSet.getString("enderecoFaturamento"));
+//                cliente.setSenha(resultSet.getString("senha"));
+//                cliente.setConfirmaSenha(resultSet.getString("confirmaSenha"));
+//                cliente.setId(resultSet.getString("id"));
+//
+//            }
+//
+//            System.out.println(cliente);
+//
+//            connection.close();
+//
+//            return cliente;
+//
+//        } catch (Exception e) {
+//
+//            System.out.println("Error: " + e.getMessage());
+//
+//            cliente = null;
+//            return cliente;
+//        }
+//    }
 
-        Cliente cliente = null;
-
-        try {
-
-            Connection connection = ConnectionPoolConfig.getConnection();
-
-            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
-
-            preparedStatement.setString(1, getId());
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            System.out.println(resultSet.getString("nome"));
-
-            System.out.println("success in select email");
-
-
-            while (resultSet.next()) { // Verifica se há uma linha no resultado
-
-                cliente.setNome(resultSet.getString("nome"));
-                cliente.setGenero(resultSet.getString("genero"));
-                cliente.setDataNasimento(resultSet.getString("dataNascimento"));
-                cliente.setCpf(resultSet.getString("cpf"));
-                cliente.setEnderecoEntrega(resultSet.getString("enderecoEntrega"));
-                cliente.setEnderecoFaturamento(resultSet.getString("enderecoFaturamento"));
-                cliente.setSenha(resultSet.getString("senha"));
-                cliente.setConfirmaSenha(resultSet.getString("confirmaSenha"));
-                cliente.setId(resultSet.getString("id"));
-
-            }
-
-            System.out.println(cliente);
-
-            connection.close();
-
-            return cliente;
-
-        } catch (Exception e) {
-
-            System.out.println("Error: " + e.getMessage());
-
-            cliente = null;
-            return cliente;
-        }
+    public static Cliente getCliente() {
+        return clienteEstatico;
     }
 
-    static public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public static void setCliente(Cliente cliente) {
+        clienteEstatico = cliente;
     }
 }

@@ -119,10 +119,6 @@
                                     <input type="text" id="nome" name="nome" value="${param.nome}" required><br><br>
                                 </div>
                                 <div class="input-box">
-                                    <label for="email">E-mail:</label>
-                                    <input type="text" id="email" name="email" value="${param.email}" required><br><br>
-                                </div>
-                                <div class="input-box">
                                     <label for="dataNascimento">Data de Nascimento:</label>
                                     <input type="text" id="dataNascimento" name="dataNascimento" value="${param.dataNascimento}" readonly><br><br>
                                 </div>
@@ -163,12 +159,6 @@
                                     <input type="text" id="complementoEntrega" name="complementoEntrega"><br><br>
                                 </div>
                                 <div class="input-box">
-                                    <label for="cpf">CPF:</label>
-                                    <input type="text" id="cpf" name="cpf" value="${param.cpf}" maxlength="14" required>
-                                    <span id="cpfError" style="color: red;"></span>
-                                    <br><br>
-                                </div>
-                                <div class="input-box">
                                     <label for="genero">Gênero:</label>
                                     <select id="genero" name="genero" required>
                                         <option value="" disabled selected>Selecione o gênero</option>
@@ -194,10 +184,10 @@
 
                             <div class="cadastrar-button">
                                 <div>
-                                    <button class="botao azul" ><a class="azul" href="index.jsp">Voltar</a></button>
+                                    <button class="botao azul" ><a class="azul" href="index.jsp">Cancelar</a></button>
                                 </div>
                                 <div>
-                                    <button type="submit" class="botao verde" style="margin-left: 10px">Cadastrar</button>
+                                    <button type="submit" class="botao verde" style="margin-left: 10px">Confirmar</button>
                                 </div>
                             </div>
                         </form>

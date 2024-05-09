@@ -34,7 +34,7 @@ public class CriarClienteServlet extends HttpServlet {
         String clienteCPF = req.getParameter("cpf");
         String clienteSenha = req.getParameter("senha");
         String clienteConfirmarSenha = req.getParameter("confirmarSenha");
-        String clienteId = req.getParameter("clienteId");
+        String clienteId = req.getParameter("id");
 
         ClienteDAO clienteDAO = new ClienteDAO();
 
@@ -44,7 +44,7 @@ public class CriarClienteServlet extends HttpServlet {
             System.out.println(cliente);
             clienteDAO.criarCliente(cliente);
         }else{
-            //clienteDAO.atualizarDados();
+            clienteDAO.atualizarCliente(cliente);
         }
 
         resp.sendRedirect("/login-cliente");

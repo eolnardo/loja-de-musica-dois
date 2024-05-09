@@ -4,7 +4,7 @@ public class Cliente {
     private String id;
     private String nome;
     private String email;
-    private String DataNasimento;
+    private String dataNascimento;
     private String genero;
     private String cpf;
     private String senha;
@@ -12,10 +12,13 @@ public class Cliente {
     private String enderecoFaturamento;
     private String enderecoEntrega;
 
+    
+
+
 
     public Cliente(String nome, String genero, String dataNasimento, String senha, String confirmaSenha, String id) {
         this.nome = nome;
-        DataNasimento = dataNasimento;
+        dataNascimento = dataNasimento;
         this.genero = genero;
         this.senha = senha;
         this.confirmaSenha = confirmaSenha;
@@ -24,7 +27,7 @@ public class Cliente {
 
     public Cliente(String nome, String genero, String dataNasimento, String id) {
         this.nome = nome;
-        DataNasimento = dataNasimento;
+        dataNascimento = dataNasimento;
         this.genero = genero;
         this.id = id;
     }
@@ -41,7 +44,7 @@ public class Cliente {
         this.id = id;
         this.nome = nome;
         this.email = email;
-        DataNasimento = dataNasimento;
+        dataNascimento = dataNasimento;
         this.genero = genero;
         this.cpf = cpf;
         this.senha = senha;
@@ -53,13 +56,25 @@ public class Cliente {
         this.id = id;
         this.nome = nome;
         this.email = email;
-        DataNasimento = dataNasimento;
+        dataNascimento = dataNasimento;
         this.genero = genero;
         this.cpf = cpf;
         this.senha = senha;
         this.confirmaSenha = confirmaSenha;
         this.enderecoEntrega = enderecoEntrega;
         this.enderecoFaturamento = enderecoFaturamento;
+    }
+
+    public Cliente(String nome, String genero, String dataNasimento, String senha, String confirmaSenha, String enderecoEntrega, String enderecoFaturamento, String id) {
+        this.id = id;
+        this.nome = nome;
+        dataNascimento = dataNasimento;
+        this.genero = genero;
+        this.senha = senha;
+        this.confirmaSenha = confirmaSenha;
+        this.enderecoEntrega = enderecoEntrega;
+        this.enderecoFaturamento = enderecoFaturamento;
+
     }
 
     public String getId() {
@@ -86,9 +101,9 @@ public class Cliente {
         this.email = email;
     }
 
-    public String getDataNasimento() {return DataNasimento;}
+    public String getdataNascimento() {return dataNascimento;}
 
-    public void setDataNasimento(String dataNasimento) {DataNasimento = dataNasimento;}
+    public void setdataNascimento(String dataNasimento) {dataNascimento = dataNasimento;}
 
     public String getGenero() {
         return genero;
@@ -144,7 +159,7 @@ public class Cliente {
                 "id='" + id + '\'' +
                 ", nome='" + nome + '\'' +
                 ", email='" + email + '\'' +
-                ", DataNasimento='" + DataNasimento + '\'' +
+                ", dataNascimento='" + dataNascimento + '\'' +
                 ", genero='" + genero + '\'' +
                 '}';
     }

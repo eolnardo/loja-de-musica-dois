@@ -14,45 +14,36 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/atualizar-cadastro-cliente")
 public class AtualizarCadastroServlet extends HttpServlet {
 
-    String email2;
-
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        Cliente cliente = new ClienteDAO().encontrarClientePorId();
+        Cliente cliente = ClienteDAO.getCliente();
 
         System.out.println(cliente);
-
 
         req.setAttribute("cliente", cliente);
 
         req.getRequestDispatcher("perfil-cliente.jsp").forward(req, resp);
 
+
     }
 
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-        String sessao = req.getSession().getAttribute("loggedCliente").toString();
-
-        System.out.println(sessao);
-
-        Cliente cliente = new ClienteDAO().encontrarClientePorId();
-
         ClienteDAO clienteDao = new ClienteDAO();
 
-        System.out.println(cliente);
-
-        String clienteNome = cliente.getNome();
-        String clienteGenero = cliente.getGenero();
-        String clienteNascimento = cliente.getDataNasimento();
-        String clienteSenha = cliente.getSenha();
-        String clienteConfirmaSenha = cliente.getConfirmaSenha();
-        String clienteId = cliente.getId();
+        String clienteNome = req.getParameter("nome");
+        String clienteSenha = req.getParameter("senha");
+        String clienteConfirmaSenha = req.getParameter("confirmaSenha");
+        String clienteEnderecoFaturamento = req.getParameter("enderecoFaturamento");
+        String clienteEnderecoEntrega = req.getParameter("enderecoEntrega");
+        String clienteGenero = req.getParameter("genero");
+        String clienteNascimento = req.getParameter("dataNascimento");
+        String clienteId = req.getParameter("id");
 
         System.out.println(clienteNascimento);
 
-        Cliente novoCliente = new Cliente(clienteNome, clienteGenero, clienteNascimento, clienteSenha, clienteConfirmaSenha, clienteId);
+        Cliente novoCliente = new Cliente(clienteNome, clienteGenero, clienteNascimento, clienteSenha, clienteConfirmaSenha, clienteEnderecoEntrega, clienteEnderecoFaturamento, clienteId);
 
         if (!clienteId.isBlank()) {
             System.out.println(novoCliente);
@@ -63,13 +54,7 @@ public class AtualizarCadastroServlet extends HttpServlet {
         resp.sendRedirect("/carregar-tela-inicial");
     }
 
-    public String getEmail2() {
-        return email2;
-    }
 
-    public void setEmail2(String email) {
-        this.email2 = email;
-    }
 }
 
 

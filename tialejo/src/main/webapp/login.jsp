@@ -37,7 +37,8 @@
     <input type="password" id="senha" name="senha">
 
     <button type="submit">Entrar</button>
-    <a href="/criar-cliente" type="submit">Cadastre-se!</a>
+
+    <a href="criar-cliente.jsp" type="submit">Cadastre-se!</a>
 </form>
                 </div>
             </div>
