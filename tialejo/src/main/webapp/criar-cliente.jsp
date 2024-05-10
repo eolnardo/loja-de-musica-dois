@@ -82,8 +82,10 @@
         function copiarEndereco() {
             // Obter os valores do endereço de faturamento
             var enderecoFaturamento = document.getElementById('enderecoFaturamento').value;
+            var cepFaturamento = document.getElementById('cepFaturamento')
 
             // Definir os valores do endereço de faturamento nos campos de endereço de entrega
+            document.getElementById('cepEntrega').value = cepFaturamento;
             document.getElementById('enderecoEntrega').value = enderecoFaturamento;
         }
     </script>

@@ -11,8 +11,10 @@ public class Cliente {
     private String confirmaSenha;
     private String enderecoFaturamento;
     private String enderecoEntrega;
+    private String cepFaturamento;
+    private String cepEntrega;
 
-    
+
 
 
 
@@ -38,6 +40,20 @@ public class Cliente {
         this.confirmaSenha = confirmaSenha;
     }
 
+    public Cliente(String id, String nome, String email, String dataNasimento, String genero, String cpf, String senha, String confirmaSenha, String enderecoEntrega, String enderecoFaturamento, String cepEntrega, String cepFaturamento) {
+        this.id = id;
+        this.nome = nome;
+        this.email = email;
+        dataNascimento = dataNasimento;
+        this.genero = genero;
+        this.cpf = cpf;
+        this.senha = senha;
+        this.confirmaSenha = confirmaSenha;
+        this.enderecoEntrega = enderecoEntrega;
+        this.enderecoFaturamento = enderecoFaturamento;
+        this.cepFaturamento = cepFaturamento;
+        this.cepEntrega = cepEntrega;
+    }
 
 
     public Cliente(String id, String nome, String email, String dataNasimento, String genero, String cpf, String senha, String confirmaSenha, String enderecoEntrega) {
@@ -162,5 +178,29 @@ public class Cliente {
                 ", dataNascimento='" + dataNascimento + '\'' +
                 ", genero='" + genero + '\'' +
                 '}';
+    }
+
+    public String getDataNascimento() {
+        return dataNascimento;
+    }
+
+    public void setDataNascimento(String dataNascimento) {
+        this.dataNascimento = dataNascimento;
+    }
+
+    public String getCepFaturamento() {
+        return cepFaturamento;
+    }
+
+    public void setCepFaturamento(String cepFaturamento) {
+        this.cepFaturamento = cepFaturamento;
+    }
+
+    public String getCepEntrega() {
+        return cepEntrega;
+    }
+
+    public void setCepEntrega(String cepEntrega) {
+        this.cepEntrega = cepEntrega;
     }
 }

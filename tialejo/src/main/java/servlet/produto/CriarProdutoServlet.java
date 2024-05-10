@@ -5,6 +5,7 @@
     import org.apache.commons.fileupload.FileItem;
     import org.apache.commons.fileupload.disk.DiskFileItemFactory;
     import org.apache.commons.fileupload.servlet.ServletFileUpload;
+    import org.apache.commons.fileupload.*;
 
     import javax.servlet.ServletException;
     import javax.servlet.annotation.WebServlet;
@@ -29,15 +30,15 @@
 
             Map<String, String> parameters = uploadImage(req);
 
-            String produtoNome = req.getParameter("nome");
+            String produtoNome = parameters.get("nome");
             System.out.println("Nome do produto é: " + produtoNome);
-            String produtoAvaliacao = req.getParameter("avaliacao");
-            String produtoDescricao = req.getParameter("descricao");
-            BigDecimal produtoPreco = new BigDecimal(req.getParameter("preco"));
+            String produtoAvaliacao = parameters.get("avaliacao");
+            String produtoDescricao = parameters.get("descricao");
+            BigDecimal produtoPreco = new BigDecimal(parameters.get("preco"));
             System.out.println(produtoPreco);
-            int produtoqtdEstoque = Integer.parseInt(req.getParameter("qtdEstoque"));
-            boolean produtoStatus = Boolean.parseBoolean(req.getParameter("status"));
-            String produtoId = req.getParameter("id");
+            int produtoqtdEstoque = Integer.parseInt(parameters.get("qtdEstoque"));
+            boolean produtoStatus = Boolean.parseBoolean(parameters.get("status"));
+            String produtoId = parameters.get("id");
             String produtoImagem = parameters.get("image");
 
             ProdutoDAO produtoDao = new ProdutoDAO();
@@ -80,7 +81,7 @@
 
                 } catch (Exception ex) {
 
-                    requestParameters.put("image", "img/default-car.jpg");
+                    requestParameters.put("image", "/img/produto-sem-imagem.jpg");
 
                 }
 

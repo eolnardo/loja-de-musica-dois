@@ -43,6 +43,13 @@ CREATE TABLE Cliente (
 
 INSERT INTO Cliente (cpf, nome, email, senha, confirmasenha, telefone, enderecoFaturamento, enderecoEntrega) VALUES ('12345678910', 'cliente cliente', 'cliente@cliente', 'cliente', 'cliente', '00123456789', '09760280', '09760280');
 
+CREATE TABLE Endereco (
+    ID INT AUTO_INCREMENT PRIMARY KEY,
+    ClienteID INT,
+    Endereco VARCHAR(255),
+    CEP VARCHAR(10),
+    FOREIGN KEY (ClienteID) REFERENCES Cliente(ID)
+);
 
 
 

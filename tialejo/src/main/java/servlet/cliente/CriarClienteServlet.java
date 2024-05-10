@@ -28,8 +28,8 @@ public class CriarClienteServlet extends HttpServlet {
         String clienteNascimento = req.getParameter("dataNascimento");
         String clienteGenero = req.getParameter("genero");
         String cepFaturamento = req.getParameter("cepFaturamento");
-        String clientEnderecoFaturamento = consultarEnderecoPorCEP(cepFaturamento);
         String cepEntrega = req.getParameter("cepEntrega");
+        String clientEnderecoFaturamento = consultarEnderecoPorCEP(cepEntrega);
         String clienteEnderecoEntrega = consultarEnderecoPorCEP(cepEntrega);
         String clienteCPF = req.getParameter("cpf");
         String clienteSenha = req.getParameter("senha");
@@ -38,12 +38,15 @@ public class CriarClienteServlet extends HttpServlet {
 
         ClienteDAO clienteDAO = new ClienteDAO();
 
-        Cliente cliente = new Cliente(clienteId, clienteNome, clienteEmail, clienteNascimento, clienteGenero, clienteCPF, clienteSenha , clienteConfirmarSenha, clienteEnderecoEntrega, clientEnderecoFaturamento);
+        Cliente cliente = new Cliente(clienteId, clienteNome, clienteEmail, clienteNascimento, clienteGenero, clienteCPF, clienteSenha , clienteConfirmarSenha, clienteEnderecoEntrega, clientEnderecoFaturamento, cepEntrega, cepFaturamento);
 
         if (clienteId == null || clienteId.isBlank()){
-            System.out.println(cliente);
             clienteDAO.criarCliente(cliente);
-        }else{
+
+            System.out.println(cliente);
+            }else{
+            clienteDAO.endereco(Integer.parseInt(cliente.getId()), cliente.getCepEntrega(), cliente.getEnderecoEntrega());
+            clienteDAO.endereco(Integer.parseInt(cliente.getId()), cliente.getCepFaturamento(), cliente.getEnderecoFaturamento());
             clienteDAO.atualizarCliente(cliente);
         }
 

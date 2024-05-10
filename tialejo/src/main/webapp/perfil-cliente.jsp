@@ -157,13 +157,12 @@
                 <div class="input-box">
                   <label for="genero">Gênero:</label>
                   <select id="genero" name="genero" disabled>
-                    <option value="" disabled selected>Selecione o gênero</option>
-                    <option value="Homem">Homem</option>
-                    <option value="Mulher">Mulher</option>
-                    <option value="Outro">Outro</option>
-                    <option value="Prefiro não dizer">Outro</option>
+                    <option value="${cliente.genero}">${cliente.genero}</option>
 
                   </select>
+
+                  <input type="hidden" name="id" value="${cliente.id}">
+
                 </div>
                 <div class="input-box">
                   <label for="senha">Senha:</label>

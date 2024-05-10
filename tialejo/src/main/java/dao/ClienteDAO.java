@@ -43,7 +43,7 @@ public class ClienteDAO {
                 if (senha.equals(cliente.getSenha()) && confirmaSenha.equals(cliente.getConfirmaSenha())) {
 
 
-                    System.out.println(cliente.getNome()+cliente.getId());
+                    System.out.println(cliente.getNome() + cliente.getId());
 
                     return true;
 
@@ -67,7 +67,7 @@ public class ClienteDAO {
 
     public void criarCliente(Cliente cliente) {
 
-        String SQL = "INSERT INTO Cliente (nome, email, datanascimento, genero, enderecoEntrega, enderecoFaturamento, cpf, senha, confirmaSenha) VALUES ( ?, ?, ?, ?, ?, ?,?,?,?)";
+        String SQL = "INSERT INTO Cliente (nome, email, datanascimento, genero, enderecoEntrega, enderecoFaturamento, cpf, senha, confirmaSenha, cepEntrega, cepFaturamento) VALUES ( ?, ?, ?, ?, ?, ?,?,?,?,?,?)";
 
         try {
 
@@ -83,9 +83,11 @@ public class ClienteDAO {
             preparedStatement.setString(7, cliente.getCpf());
             preparedStatement.setString(8, cliente.getSenha());
             preparedStatement.setString(9, cliente.getConfirmaSenha());
+            preparedStatement.setString(10, cliente.getCepEntrega());
+            preparedStatement.setString(11, cliente.getCepFaturamento());
+
 
             preparedStatement.execute();
-
             connection.close();
 
         } catch (SQLException e) {
@@ -113,6 +115,32 @@ public class ClienteDAO {
             preparedStatement.execute();
 
             System.out.println("success in atualizar cadastro cliente");
+
+            connection.close();
+
+        } catch (SQLException e) {
+
+            System.out.println("fail in database connection 6");
+            System.out.println("Error: " + e.getMessage());
+
+        }
+
+    }
+
+    public void endereco(int id, String cep, String endereco) {
+        String SQL = "INSERT INTO Endereco (ClienteID, Endereco, CEP) VALUES (?, ?, ?)";
+        try {
+
+            Connection connection = ConnectionPoolConfig.getConnection();
+
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+
+            preparedStatement.setInt(1, id);
+            preparedStatement.setString(2, endereco);
+            preparedStatement.setString(3, cep);
+            preparedStatement.execute();
+
+            System.out.println("success in salvar endereco cliente");
 
             connection.close();
 
