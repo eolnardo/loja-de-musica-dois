@@ -1,0 +1,130 @@
+
+main{
+    padding: 0 30px;
+}
+
+button{
+    cursor: pointer;
+}
+
+.titulo{
+    font-size: 40px;
+    padding: 50px 0;
+    text-align: center;
+}
+
+.conteuod{
+    display: flex;
+}
+
+section{
+    flex: 1;
+}
+
+
+.box{
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    background: #391e65;
+}
+.box header{
+    padding: 15px 20px;
+    font-size: 20px;
+    border-bottom: 1px solid #ccc;
+}
+
+.infoCp{
+    padding: 20px;
+}
+
+.infoCp div{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+aside button{
+    background: green;
+    display: block;
+    width: 100%;
+    border: 0;
+    color: white;
+    text-transform: uppercase;
+    padding: 15px 0;
+    letter-spacing: 1px;
+}
+
+aside{
+    margin-left: 30px;
+}
+
+
+aside footer{
+    padding: 15px 20px;
+    background: #ccc;
+}
+
+
+.product{
+    display: flex;
+    align-items: center;
+}
+.product img{
+    border-radius:6px ;
+}
+.info {
+    margin-left: 20px;
+}
+.name{
+    font-size: 20px;
+}
+.color{
+    color: #666;
+}
+.tabela{
+    width: 100%;
+}
+.qty{
+    background-color: #391e65;
+    display: inline-flex;
+    padding: 0 0;
+    justify-content: space-around;
+    align-items: center;
+    border-radius: 20px;
+    min-width: 60px;
+}
+.qty button{
+    background: transparent;
+    border: 0;
+    padding: 0 10px;
+}
+
+.qty button:hover{
+    color: var(--azul-principal);
+    background-color: var(--preto);
+    box-shadow: 0 8px 24px 0 rgba(16, 39, 112, .2);
+    cursor: pointer;
+    border-radius: 20px;
+}
+.qty span{
+    margin: 0 10px;
+}
+
+.remove{
+    background-color: #391e65;
+    border: 0;
+    width: 30px;
+    height: 30px;
+    border-radius: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+
+}
+.remove:hover{
+    color: var(--azul-principal);
+    background-color: var(--preto);
+    box-shadow: 0 8px 24px 0 rgba(16, 39, 112, .2);
+    cursor: pointer;
+}

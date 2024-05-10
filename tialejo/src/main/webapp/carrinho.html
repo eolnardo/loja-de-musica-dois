@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="carrinho.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
+          integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
+          crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Carrinho de compras</title>
+</head>
+
+<body>
+<nav class="navbar"> Não sei ainda oq terá aqui</nav>
+<main>
+    <div class="titulo"> Seu Carrinho</div>
+    <div class="conteuod">
+        <section>
+            <table class=" tabela">
+                <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Preço</th>
+                    <th>Quantidade</th>
+                    <th>Total</th>
+                    <th>-</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <div class="product">
+                            <img src="https://picsum.photos/id/1/100/120" alt="">
+                            <div class="info">
+                                <div class="name">nome do produto</div>
+                                <div class="color">Categoria</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>R$ 150(valor)</td>
+                    <td>
+                        <div class="qty">
+                            <button><i class="fa-solid fa-minus"></i></button>
+                            <span>2</span>
+                            <button><i class="fa-solid fa-plus"></i></button>
+                        </div>
+                    </td>
+                    <td>R$ 300 (total)</td>
+                    <td>
+                        <button class="remove"><i class="fa-solid fa-x"></i></button>
+                    </td>
+                </tr>
+
+                </tbody>
+            </table>
+        </section>
+        <aside>
+            <div class="box">
+                <header>Resumo da compra</header>
+                <div class="infoCp">
+                    <div><span>Sub-total</span>R$400</div>
+                    <div><span>Frete</span>Grátiss</div>
+                </div>
+                <footer>
+                    <span>Total:</span>
+                    <span>R$318</span>
+                </footer>
+            </div>
+            <button>Finalizar Compra</button>
+        </aside>
+    </div>
+</main>
+</body>
+
+</html>
