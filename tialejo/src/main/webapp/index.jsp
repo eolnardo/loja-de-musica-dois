@@ -10,16 +10,16 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
           integrity="sha512-VuwNeOLQQ1vXtZgTkqK3zUFJAN3Uw8byEUVqyIZJc6DvZ4FYvZMzUKcFE4fsVHmzUchidreL5x5xKWszxiVjQg=="
-          crossorigin="anonymous" referrerpolicy="no-referrer" />
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
     <link rel="stylesheet" href="static/css/style.css">
-    <link rel="shortcut icon" href="img/cd.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="static/images/cd.ico" type="image/x-icon">
 </head>
 
 <body>
 <nav class="navbar">
     <a href="/carregar-tela-inicial">
         <div class="left-navbar">
-            <img  src="static/img/cd.ico" alt="Logo">
+            <img src="static/img/cd.ico" alt="Logo">
             <h1 class="mt-2">Tialejo ®</h1>
         </div>
     </a>
@@ -36,7 +36,7 @@
         </c:when>
         <c:otherwise>
             <div class="right-navbar">
-                <i class="fa-solid fa-cart-shopping mt-4"></i>
+                <a href="/adicionar-carrinho"><i class="fa-solid fa-cart-shopping mt-4"></i></a>
                 <a href="/login-cliente" class="btn mt-4" style="z-index: 999">>Login ou Cadastre-se</a>
             </div>
         </c:otherwise>
@@ -47,30 +47,35 @@
 <section id="secao-produtos">
     <form action="/carregar-tela-inicial" method="get">
         <c:forEach var="produto" items="${produtos}">
-        <ul>
+            <ul>
                 <li>
                     <div class="card col-11 bg-body-tertiary">
                         <div class="card-info">
                             <img src="${produto.image}" class="img-principal" alt="imagem principal do produto">
                             <h3>${produto.nome}</h3>
                             <span style="display: flex; gap: 5px; justify-content: center;">
-                        <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
-                        <h4>${produto.avaliacao}</h4>
-                      </span>
+                                <i class="fa-solid fa-star" style="color: #FFD43B;"></i>
+                                <h4>${produto.avaliacao}</h4>
+                            </span>
                             <span style="display: flex; gap: 5px; justify-content: center;">
-                        <i class="fa-solid fa-hand-holding-dollar" style="color: #74C0FC;"></i>
-                        <h4>${produto.preco}</h4>
-                      </span>
-                                <a href="/visualizar?id=${produto.id}" class="btn mt-1 align-self-center">${produto.descricao}</a>
+                                <i class="fa-solid fa-hand-holding-dollar" style="color: #74C0FC;"></i>
+                                <h4>${produto.preco}</h4>
+                            </span>
+                            <span style="display: flex; gap: 5px; justify-content: center;">
+                                <i class="fa-solid fa-info-circle" style="color: #74C0FC;"></i>
+                                <h4>${produto.descricao}</h4>
+                            </span>
+                            <a href="/visualizar?id=${produto.id}" class="btn mt-1 align-self-center">Ver Detalhes</a>
                         </div>
                     </div>
                 </li>
-        </ul
+            </ul
         </c:forEach>
     </form>
 </section>
 
 <script src="https://kit.fontawesome.com/eaae749ef3.js" crossorigin="anonymous"></script>
+
 </body>
 
 </html>

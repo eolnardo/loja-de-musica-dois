@@ -30,6 +30,7 @@
 <body>
 <div>
 
+
     <c:if test="${sessionScope.loggedUsuario != null}">
         <span>${sessionScope.loggedUsuario}</span>
         <a href="/logout-backoffice">Sair</a>
@@ -46,7 +47,21 @@
             <c:if test="${sessionScope.loggedUsuario != null}">
                 <th>Ações</th>
             </c:if>
+
+
         </tr>
+        <form action="/listar-produtos" method="GET">
+            <div class="search">
+                <div class="input-group mb-3">
+                    <form action="/listar-produtos" method="GET">
+                        <input type="text" class="form-style" placeholder="Busca" name="q">
+                        <button type="submit"><img src="static/images/search.png" alt=""></button>
+                    </form>
+                    <a href="/criar-produto.jsp"><img src="static/images/add.png" alt=""></a>
+                </div>
+
+            </div>
+        </form>
         <c:forEach var="produto" items="${produtos}">
             <tr>
                 <td>${produto.id}</td>

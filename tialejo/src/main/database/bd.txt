@@ -36,9 +36,8 @@ CREATE TABLE Cliente (
     confirmaSenha VARCHAR(100) NOT NULL,
     enderecoFaturamento VARCHAR(255) NOT NULL,
     enderecoEntrega VARCHAR(255) NOT NULL,
-    dataNascimento DATE,
-    CONSTRAINT nome_2_palavras CHECK (nome REGEXP '^[a-zA-Z]+ [a-zA-Z]+$'),
-    CONSTRAINT senha_unique UNIQUE (senha)
+    dataNascimento VARCHAR(14),
+    CONSTRAINT nome_2_palavras CHECK (nome REGEXP '^[a-zA-Z]+ [a-zA-Z]+$')
 );
 
 INSERT INTO Cliente (cpf, nome, email, senha, confirmasenha, telefone, enderecoFaturamento, enderecoEntrega) VALUES ('12345678910', 'cliente cliente', 'cliente@cliente', 'cliente', 'cliente', '00123456789', '09760280', '09760280');
@@ -51,6 +50,46 @@ CREATE TABLE Endereco (
     FOREIGN KEY (ClienteID) REFERENCES Cliente(ID)
 );
 
+CREATE TABLE Pedido (
+    idPedido INT AUTO_INCREMENT PRIMARY KEY,
+    idCliente INT NOT NULL,
+    totalPedido DECIMAL(10, 2) NOT NULL,
+    numeroItens INT NOT NULL,
+    data VARCHAR(14) NOT NULL,
+    frete DECIMAL(10, 2) NOT NULL,
+    endereco VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE Carrinho (
+    idCarrinho INT AUTO_INCREMENT PRIMARY KEY,
+    idCliente INT,
+    totalCarrinho DECIMAL(10, 2) NOT NULL,
+    numeroItens INT NOT NULL,
+    dataCriacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    frete DECIMAL(10, 2),
+    enderecoEntrega VARCHAR(255),
+    FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
+);
+
+CREATE TABLE ItemPedido (
+    idItemPedido INT AUTO_INCREMENT PRIMARY KEY,
+    idPedido INT NOT NULL,
+    idProduto INT NOT NULL,
+    nomeProduto VARCHAR(255) NOT NULL, 
+    quantidade INT NOT NULL,
+    valorUnitario DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (idPedido) REFERENCES Pedido(idPedido)
+);
+
+CREATE TABLE ItemCarrinho (
+    idItemCarrinho INT AUTO_INCREMENT PRIMARY KEY,
+    idCarrinho INT NOT NULL,
+    idProduto INT NOT NULL,
+    nomeProduto VARCHAR(255) NOT NULL,
+    quantidade INT NOT NULL,
+    valorUnitario DECIMAL(10, 2) NOT NULL,
+    FOREIGN KEY (idCarrinho) REFERENCES Carrinho(idCarrinho)
+);
 
 
 

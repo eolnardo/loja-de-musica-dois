@@ -13,6 +13,9 @@ public class Produto {
     private boolean status;
     private String image;
 
+    public Produto() {
+    }
+
     public Produto(String id, String nome, int qtdEstoque, BigDecimal preco, boolean status, String image) {
         this.id = id;
         this.nome = nome;

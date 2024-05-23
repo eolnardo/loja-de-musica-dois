@@ -1,22 +1,52 @@
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="style.css">
-    <link rel="stylesheet" href="carrinho.css">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/carrinho.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
           integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>Carrinho de compras</title>
 </head>
+<nav class="navbar">
+    <a href="/carregar-tela-inicial">
+        <div class="left-navbar">
+            <img src="static/images/cd.ico" alt="Logo">
+            <h1 class="mt-2">Tialejo ®</h1>
+        </div>
+    </a>
 
+    <form action="atualizar-cadastro-cliente" method="get">
+        <li>
+            <button type="submit">Meu Cadastro</button>
+        </li>
+    </form>
+
+    <c:choose>
+        <c:when test="${sessionScope.loggedCliente != null}">
+            <a href="/logout-cliente" class="btn mt-4" style="z-index: 999">Sair</a>
+        </c:when>
+        <c:otherwise>
+            <div class="right-navbar">
+                <a href="carrinho.jsp"><i class="fa-solid fa-cart-shopping mt-4"></i></a>
+                <a href="/login-cliente" class="btn mt-4" style="z-index: 999">>Login ou Cadastre-se</a>
+            </div>
+        </c:otherwise>
+    </c:choose>
+
+</nav>
 <body>
-<nav class="navbar"> Não sei ainda oq terá aqui</nav>
 <main>
-    <div class="titulo"> Seu Carrinho</div>
+    <div class="titulo">Carrinho</div>
     <div class="conteuod">
+        <form action="/adicionar-carrinho" method="get">
+            <c:if test="${not empty produtosCarrinho}">
+            <c:forEach var="produto" items="${produtosCarrinho}">
         <section>
             <table class=" tabela">
                 <thead>
@@ -56,6 +86,9 @@
                 </tbody>
             </table>
         </section>
+            </c:forEach>
+            </c:if>
+        </form>
         <aside>
             <div class="box">
                 <header>Resumo da compra</header>

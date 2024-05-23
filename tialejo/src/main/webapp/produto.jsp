@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="static/css/style.css">
     <link rel="stylesheet" href="static/css/carrossel.css">
-    <link rel="shortcut icon" href="@{/images/cd.ico}" type="image/x-icon">
+    <link rel="shortcut icon" href="static/images/cd.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
           integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -20,7 +20,7 @@
 <nav class="navbar">
     <a href="/carregar-tela-inicial">
         <div class="left-navbar">
-            <img  src="static/img/cd.ico" alt="Logo">
+            <img  src="static/images/cd.ico" alt="Logo">
             <h1 class="mt-2">Tialejo ®</h1>
         </div>
     </a>
@@ -38,6 +38,7 @@
         </c:choose>
     </div>
 </nav>
+
 
 
     <form action="/visualizar" method="get">
@@ -60,19 +61,23 @@
                     class="fa-solid fa-circle-chevron-right"></span></a>
         </div>
         <div>
-            <div class="col-12 text-center align-self-center py-5" style="color: rgb(180, 14, 235)">
-                <label>Nome</label>
-                        <input value="${produto.nome}" readonly>
-            </div>
-            <div class="informações">
-                <h3 style="color: rgb(234, 18, 18)">Preço: <input value="${produto.preco}" readonly></h3>
-                <h4>Avaliações: <input value="${produto.avaliacao}" readonly> <i class="fa-solid fa-star"></i></h4>
 
-            </div>
-            <div class="informações">
-                <h3 style="color: rgb(234, 18, 18)">Descrição: ${produto.descricao}</h3>
-            </div>
-            <a href="adicionar-carrinho" class="btn mt-4">Comprar</a>
+            <!-- Exemplo de botão "Comprar" na página de detalhes do produto -->
+                <input type="hidden" name="action" value="adicionar">
+                <input type="hidden" name="idProduto" value="${produto.id}">
+                <div class="col-12 text-center align-self-center py-5" style="color: rgb(180, 14, 235)">
+                    <label>Nome</label>
+                    <input value="${produto.nome}" readonly>
+                </div>
+                <div class="informações">
+                    <h3 style="color: rgb(234, 18, 18)">Preço: <input value="${produto.preco}" readonly></h3>
+                    <h4>Avaliações: <input value="${produto.avaliacao}" readonly> <i class="fa-solid fa-star"></i></h4>
+                </div>
+                <div class="informações">
+                    <h3 style="color: rgb(234, 18, 18)">Descrição: ${produto.descricao}</h3>
+                </div>
+                <!-- Botão "Adicionar ao Carrinho" -->
+            <a href="/adicionar-carrinho?nome=${produto.nome}&preco=${produto.preco}&id=${produto.id}" class="btn mt-1 align-self-center">Adicionar ao Carrinho</a>
         </div>
         </div>
     </form>

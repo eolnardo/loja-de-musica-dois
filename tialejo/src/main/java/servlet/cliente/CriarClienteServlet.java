@@ -45,6 +45,7 @@ public class CriarClienteServlet extends HttpServlet {
 
             System.out.println(cliente);
             }else{
+
             clienteDAO.endereco(Integer.parseInt(cliente.getId()), cliente.getCepEntrega(), cliente.getEnderecoEntrega());
             clienteDAO.endereco(Integer.parseInt(cliente.getId()), cliente.getCepFaturamento(), cliente.getEnderecoFaturamento());
             clienteDAO.atualizarCliente(cliente);

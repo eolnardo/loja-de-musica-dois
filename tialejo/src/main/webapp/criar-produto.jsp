@@ -9,37 +9,35 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="static/css/style.css">
     <link rel="stylesheet" href="static/css/carrossel.css">
-    <link rel="shortcut icon" href="@{/images/cd.ico}" type="image/x-icon">
+    <link rel="shortcut icon" href="static/images/cd.ico" type="image/x-icon">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css"
           integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <style>
-        .error-message {
-            color: #ff0000;
-            font-size: 12px;
-            margin-top: 5px;
-        }
-
-        .form-group.error input.form-style {
-            border: 1px solid #ff0000;
-            background-color: #ffe6e6;
-        }
-
-        .error {
-            border: 1px solid #ff0000;
-            background-color: #ffe6e6;
-        }
-    </style>
-
 </head>
+<nav class="navbar">
+    <a href="/carregar-tela-inicial">
+        <div class="left-navbar">
+            <img  src="static/images/cd.ico" alt="Logo">
+            <h1 class="mt-2">Tialejo ®</h1>
+        </div>
+    </a>
+    <div class="right-navbar">
+        <form action="encontrar-todos-produtos" method="get">
+            <button  class="btn mt-4" style="z-index: 999">Voltar</button>
+        </form>
+        <c:choose>
+            <c:when test="${sessionScope.loggedUsuario != null}">
+                <a href="/logout-cliente" class="btn mt-4" style="z-index: 999">Sair</a>
+            </c:when>
+            <c:otherwise>
+                <a href="/login-cliente" class="btn mt-4" style="z-index: 999">Login</a>
+            </c:otherwise>
+        </c:choose>
+    </div>
+</nav>
 
 <body style="background-color: #b7bafd;">
-<div class="navbar">
-    <img src="assets/images/pegada.png" alt="petprotectors-logo" style="height: 50px;">
-    <a href="index.jsp" class="navbar-brand" style="background-color: #1E1D67;">Pet Protectors</a>
-    <ul class="navbar-menu"></ul>
-</div>
 
 <div class="container">
     <div class="form-image">
@@ -56,23 +54,23 @@
 
                 <div class="input-box">
                     <label for="nome">Nome:</label>
-                    <input type="text" id="nome" name="nome" value="${param.nome}" required><br><br>
+                    <input type="text" id="nome" name="nome" value="${param.nome}" maxlength="200" required><br><br>
                 </div>
                 <div class="input-box">
                     <label for="avaliacao">Avaliação:</label>
-                    <input type="text" id="avaliacao" name="avaliacao" value="${param.avaliacao}" min="1" max="5" step="0.5" required><br><br>
+                    <input type="number" id="avaliacao" name="avaliacao" value="${param.avaliacao}" min="1" max="5" step="0.5" required><br><br>
                 </div>
                 <div class="input-box">
                     <label for="descricao">Descrição:</label>
-                    <input type="text" id="descricao" name="descricao" value="${param.descricao}" required><br><br>
+                    <textarea id="descricao" name="descricao" maxlength="2000" required>${param.descricao}</textarea><br><br>
                 </div>
                 <div class="input-box">
                     <label for="preco">Preço:</label>
-                    <input type="text" id="preco" name="preco" value="${param.preco}" required><br><br>
+                    <input type="number" id="preco" name="preco" value="${param.preco}" min="0" step="0.01" required><br><br>
                 </div>
                 <div class="input-box">
-                    <label for="qtdEstoque">Quantiade em Estoque:</label>
-                    <input type="text" id="qtdEstoque" name="qtdEstoque" value="${param.qtdEstoque}" required><br><br>
+                    <label for="qtdEstoque">Quantidade em Estoque:</label>
+                    <input type="number" id="qtdEstoque" name="qtdEstoque" value="${param.qtdEstoque}" min="0" step="1" required><br><br>
                 </div>
                 <div>
                     <label for="image">Upload de imagem</label>
