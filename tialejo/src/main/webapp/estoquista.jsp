@@ -12,14 +12,14 @@
           integrity="sha512-VuwNeOLQQ1vXtZgTkqK3zUFJAN3Uw8byEUVqyIZJc6DvZ4FYvZMzUKcFE4fsVHmzUchidreL5x5xKWszxiVjQg=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="static/css/style.css">
-    <link rel="shortcut icon" href="img/cd.ico" type="image/x-icon">
+    <link rel="shortcut icon" href="static/images/cd.ico" type="image/x-icon">
 </head>
 
 <body>
 <nav class="navbar">
     <a href="/carregar-tela-inicial">
         <div class="left-navbar">
-            <img  src="static/img/cd.ico" alt="Logo">
+            <img  src="static/images/logo-tialejo.png" alt="Logo">
             <h1 class="mt-2">Tialejo ®</h1>
         </div>
     </a>
@@ -30,7 +30,6 @@
 </nav>
 <section class="content">
     <div class="container">
-
         <div class="row full-height justify-content-center">
             <div class="col-12 text-center align-self-center py-5">
                 <div class="section pb-5 pt-5 pt-sm-2 text-center">
@@ -40,7 +39,7 @@
                             <div class="card-front">
                                 <div class="center-wrap">
                                     <div class="section text-center actions">
-                                        <h1 class="mb-0 pb-3"><span>Início</span></h1>
+                                        <h1 class="mb-0 pb-3"><span>Início - Estoquista</span></h1>
                                         <a href="/encontrar-todos-produtos" class="btn mt-4">Listar Produtos</a>
                                     </div>
                                 </div>

@@ -21,10 +21,8 @@
 <nav class="navbar">
     <a th:href="@{'/'}">
         <div class="left-navbar">
-
-            <img th:src="@{/images/cd.ico}" alt="Logo">
+            <img src="static/images/logo-tialejo.png"" alt="Logo">
             <h1 class="mt-2">Tialejo ®</h1>
-
         </div>
     </a>
 </nav>
@@ -40,7 +38,7 @@
                             <div class="card-front">
                                 <div class="center-wrap">
                                     <div class="section text-center actions">
-                                        <h1 class="mb-0 pb-3"><span>Início</span></h1>
+                                        <h1 class="mb-0 pb-3"><span>Início - Administrador</span></h1>
                                         <a href="/encontrar-todos-usuarios" class="btn mt-4">Listar Usuários</a>
                                         <a href="/encontrar-todos-produtos" class="btn mt-4">Listar Produtos</a>
                                     </div>

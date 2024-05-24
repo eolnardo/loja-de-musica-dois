@@ -10,26 +10,40 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
           integrity="sha512-VuwNeOLQQ1vXtZgTkqK3zUFJAN3Uw8byEUVqyIZJc6DvZ4FYvZMzUKcFE4fsVHmzUchidreL5x5xKWszxiVjQg=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="stylesheet" href="@{css/style.css}">
-    <link rel="shortcut icon" href="@{/images/cd.ico}" type="image/x-icon">
+    <link rel="stylesheet" href="static/css/style.css">
+    <link rel="shortcut icon" href="static/images/cd.ico" type="image/x-icon">
 </head>
+<nav class="navbar">
+    <a href="/carregar-tela-inicial">
+        <div class="left-navbar">
+            <img  src="static/images/logo-tialejo.png" alt="Logo">
+            <h1 class="mt-2">Tialejo ®</h1>
+        </div>
+    </a>
+    <c:if test="${sessionScope.loggedUsuario != null}">
+        <span>${sessionScope.loggedUsuario}</span>
+        <a href="/logout-backoffice">Sair</a>
+    </c:if>
+</nav>
+
 <body>
-<div>
+    <div id="container-tabela">
 
     <c:if test="${sessionScope.loggedUsuario != null}">
         <span>${sessionScope.loggedUsuario}</span>
         <a href="/logout-backoffice">Sair</a>
     </c:if>
 
-    <h1>usuarios</h1>
+    <h1>Usuários</h1>
     <table>
         <tr>
             <th>Nome</th>
             <th>E-mail</th>
             <th>Status</th>
             <th>Grupo</th>
+            <th>Status</th>
             <c:if test="${sessionScope.loggedUsuario != null}">
-                <th>Ações</th>
+                <th colspan="2" style="text-align: center;">Ações</th>
             </c:if>
         </tr>
         <c:forEach var="usuario" items="${usuarios}">
@@ -51,8 +65,7 @@
                 <td>
                     <c:if test="${sessionScope.loggedUsuario != null}">
                         <form action="/delete-car" method="post">
-                            <span> | </span>
-                            <a href="index.jsp?id=${usuario.nome}&name=${usuario.email}">Atualizar</a>
+                            <button class="botao azul"><a href="index.jsp?id=${usuario.nome}&name=${usuario.email}">Atualizar</a></button>
                         </form>
                     </c:if>
                 </td>
@@ -60,7 +73,7 @@
                     <c:if test="${sessionScope.loggedUsuario != null}">
                         <form action="alterar-status-usuario" method="post">
                             <input type="hidden" name="id" value="${usuario.id}">
-                            <button type="submit">Inativar/Reativar</button>
+                            <button class="botao azul" type="submit">Inativar/Reativar</button>
                         </form>
                     </c:if>
                 </td>

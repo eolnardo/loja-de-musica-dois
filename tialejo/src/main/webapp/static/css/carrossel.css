@@ -22,9 +22,7 @@
     transition: color 0.1s;
 }
 
-.carrousel-botoes :hover{
-    color: rgba(223, 16, 16, 0.5);
-}
+
 
 .botao-proximo{
     right: 0;
@@ -75,13 +73,5 @@
     padding: 5rem;
     display: flex;
     flex-direction: row;
-}
-.informações{
-    width: 400px;
-    padding: 1rem;
-    margin: 70px;
-    background-color: rgb(148, 137, 204);
-    border: 5px solid #40cfff;
-    border-radius: 20px;
 }
 

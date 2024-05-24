@@ -14,6 +14,9 @@
           integrity="sha512-VuwNeOLQQ1vXtZgTkqK3zUFJAN3Uw8byEUVqyIZJc6DvZ4FYvZMzUKcFE4fsVHmzUchidreL5x5xKWszxiVjQg=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="static/css/style.css">
+    <!-- CSS específico para essa página-->
+    <link rel="stylesheet" href="static/css/cliente.css">
+
     <link rel="shortcut icon" href="img/cd.ico" type="image/x-icon">
     <!-- jQuery -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -94,7 +97,7 @@
 <nav class="navbar">
     <a href="/carregar-tela-inicial">
         <div class="left-navbar">
-            <img  src="static/img/cd.ico" alt="Logo">
+            <img  src="static/images/logo-tialejo.png" alt="Logo">
             <h1 class="mt-2">Tialejo ®</h1>
         </div>
     </a>
@@ -103,12 +106,12 @@
 </nav>
 <section class="content">
     <div class="container">
-        <div class="row full-height justify-content-center">
-            <div class="col-12 text-center align-self-center py-5" style="max-wid 50%; margin-left: auto; margin-right: auto;">
-                <div class="section pb-5 pt-5 pt-sm-2 text-center">
+        <div class="row full-height">
+            <div class="col-12   py-5">
+                <div class="section pb-5 pt-5 pt-sm-2">
 
-                    <h4 class="mb-3 pb-3">Cadastrar-se</h4>
                     <div class="form">
+                        <h4 class="mb-3 pb-3">Cadastrar-se</h4>
                         <form action="/atualizar-cadastro-cliente" method="post">
                             <div class="form-header">
                             </div>
@@ -130,7 +133,7 @@
                                 <div class="input-box">
                                     <label for="cepFaturamento">CEP do Endereço de Faturamento:</label>
                                     <input type="text" id="cepFaturamento" name="cepFaturamento" value="${param.cepFaturamento}" required>
-                                    <button type="button" onclick="consultarCEP(document.getElementById('cepFaturamento').value, 'enderecoFaturamento')">Consultar</button>
+                                    <button class="botao azul" type="button" onclick="consultarCEP(document.getElementById('cepFaturamento').value, 'enderecoFaturamento')">Consultar</button>
                                     <br><br>
                                 </div>
                                 <div class="input-box">
@@ -145,14 +148,14 @@
                                 <div class="input-box">
                                     <label for="cepEntrega">CEP do Endereço de Entrega:</label>
                                     <input type="text" id="cepEntrega" name="cepEntrega" value="${param.cepEntrega}" required>
-                                    <button type="button" onclick="consultarCEP(document.getElementById('cepEntrega').value, 'enderecoEntrega')">Consultar</button>
-                                    <br><br>
+                                    <button class="botao azul" type="button" onclick="consultarCEP(document.getElementById('cepEntrega').value, 'enderecoEntrega')">Consultar</button>
                                 </div>
+                                <br><br>
 
                                 <div class="input-box">
                                     <label for="enderecoEntrega">Endereço de Entrega:</label>
-                                    <button type="button" onclick="copiarEndereco()">Copiar Endereço de Faturamento</button>
                                     <input type="text" id="enderecoEntrega" name="enderecoEntrega" value="${param.enderecoEntrega}" required><br><br>
+                                    <button class="botao azul" type="button" onclick="copiarEndereco()">Copiar Faturamento</button>
                                 </div>
                                 <div class="input-box">
                                     <label for="complementoEntrega">Complemento do Endereço de Entrega:</label>
@@ -165,7 +168,7 @@
                                         <option value="Homem">Homem</option>
                                         <option value="Mulher">Mulher</option>
                                         <option value="Outro">Outro</option>
-                                        <option value="Prefiro não dizer">Outro</option>
+                                        <option value="Prefiro não dizer">Prefiro não dizer</option>
 
                                     </select>
                                 </div>
@@ -182,13 +185,9 @@
                                 </div>
                             </div>
 
-                            <div class="cadastrar-button">
-                                <div>
-                                    <button class="botao azul" ><a class="azul" href="index.jsp">Cancelar</a></button>
-                                </div>
-                                <div>
-                                    <button type="submit" class="botao verde" style="margin-left: 10px">Confirmar</button>
-                                </div>
+                            <div class="action-button">
+                                    <button class="botao cinza" ><a class="" href="index.jsp">Cancelar</a></button>
+                                    <button type="submit" class="botao azul" style="margin-left: 10px">Confirmar</button>
                             </div>
                         </form>
                     </div>

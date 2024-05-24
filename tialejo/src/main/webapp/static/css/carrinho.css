@@ -23,14 +23,20 @@ section{
 
 
 .box{
+    font-size: 1.2rem;
     margin-bottom: 15px;
     border: 1px solid #ccc;
-    background: #391e65;
+    background: var(--azul-principal);
 }
 .box header{
     padding: 15px 20px;
     font-size: 20px;
     border-bottom: 1px solid #ccc;
+}
+
+.box footer{
+    background-color: var(--preto);
+    color: white;
 }
 
 .infoCp{
@@ -55,7 +61,8 @@ aside button{
 }
 
 aside{
-    margin-left: 30px;
+    justify-content: center;
+    align-items: center;
 }
 
 
@@ -85,7 +92,7 @@ aside footer{
     width: 100%;
 }
 .qty{
-    background-color: #391e65;
+    background-color: var(--azul-principal);
     display: inline-flex;
     padding: 0 0;
     justify-content: space-around;
@@ -111,7 +118,7 @@ aside footer{
 }
 
 .remove{
-    background-color: #391e65;
+    background-color: var(--azul-principal);
     border: 0;
     width: 30px;
     height: 30px;
