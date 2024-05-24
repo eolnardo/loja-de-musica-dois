@@ -12,9 +12,9 @@ public class CompraServlet extends HttpServlet {
 
         // Recupere ou crie o carrinho do usuário (armazenado na sessão)
         HttpSession session = request.getSession(true);
-        Pedido carrinho = (Pedido) session.getAttribute("carrinho");
+        Carrinho carrinho = (Carrinho) session.getAttribute("carrinho");
         if (carrinho == null) {
-            carrinho = new Pedido();
+            carrinho = new Carrinho();
             session.setAttribute("carrinho", carrinho);
         }
 
@@ -38,8 +38,10 @@ public class CompraServlet extends HttpServlet {
             carrinho.getListaItens().add(novoItem);
         }
 
+        // Atualiza o total do carrinho
+        carrinho.calcularTotalCarrinho();
+
         // Redirecione de volta para a página inicial ou para o carrinho
         response.sendRedirect("index.jsp"); // Você pode mudar para a página do carrinho se preferir
     }
 }
-
