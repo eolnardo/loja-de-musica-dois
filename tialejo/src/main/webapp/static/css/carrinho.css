@@ -70,7 +70,8 @@ aside footer{
     align-items: center;
 }
 .product img{
-    border-radius:6px ;
+    border-radius:6px;
+    width: 100px;
 }
 .info {
     margin-left: 20px;

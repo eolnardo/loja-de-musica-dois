@@ -16,6 +16,14 @@ public class Produto {
     public Produto() {
     }
 
+    public Produto(String id, String nome, String descricao, BigDecimal preco, String image) {
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.preco = preco;
+        this.image = image;
+    }
+
     public Produto(String id, String nome, int qtdEstoque, BigDecimal preco, boolean status, String image) {
         this.id = id;
         this.nome = nome;
@@ -35,8 +43,6 @@ public class Produto {
         this.status = status;
         this.image = image;
     }
-
-
 
     public Produto(String id, String nome, int qtdEstoque, BigDecimal preco, boolean status) {
         this.id = id;
@@ -120,5 +126,19 @@ public class Produto {
 
     public void setImage(String image) {
         this.image = image;
+    }
+
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "id='" + id + '\'' +
+                ", nome='" + nome + '\'' +
+                ", avaliacao='" + avaliacao + '\'' +
+                ", descricao='" + descricao + '\'' +
+                ", preco=" + preco +
+                ", qtdEstoque=" + qtdEstoque +
+                ", status=" + status +
+                ", image='" + image + '\'' +
+                '}';
     }
 }

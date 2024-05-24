@@ -184,7 +184,7 @@
 
                             <div class="cadastrar-button">
                                 <div>
-                                    <button class="botao azul" ><a class="azul" href="index.jsp">Cancelar</a></button>
+                                    <a class="botao azul" href="/carregar-tela-inicial">Cancelar</a>
                                 </div>
                                 <div>
                                     <button type="submit" class="botao verde" style="margin-left: 10px">Confirmar</button>

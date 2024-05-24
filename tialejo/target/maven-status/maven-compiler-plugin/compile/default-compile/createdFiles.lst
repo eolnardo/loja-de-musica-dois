@@ -3,13 +3,13 @@ servlet\cliente\CriarClienteServlet.class
 model\Usuario.class
 model\Carrinho.class
 servlet\cliente\AtualizarCadastroServlet.class
+dao\PedidoDAO.class
 model\Cliente.class
 model\Produto.class
 servlet\usuario\CriarUsuarioServlet.class
 dao\ClienteDAO.class
 dao\UsuarioDAO.class
 servlet\usuario\AlterarStatusUsuarioServlet.class
-servlet\compra\AdicionarCarrinhoServlet.class
 servlet\produto\VisualizarProdutoServlet.class
 servlet\usuario\VisualizarProdutoServlet.class
 servlet\loginbackoffice\LoginServlet.class
@@ -23,8 +23,11 @@ servlet\config\ConnectionPoolConfig.class
 servlet\loginbackoffice\LogoutServlet.class
 servlet\produto\CriarProdutoServlet.class
 model\ItemPedido.class
+servlet\compra\CriarCarrinhoServlet.class
 servlet\compra\CompraServlet.class
 servlet\usuario\ListarUsuariosServlet.class
 dao\CarrinhoDAO.class
 servlet\produto\ListarProdutosServlet.class
 filter\FiltroAutenticacao.class
+dao\ItensPedidoDAO.class
+servlet\compra\ExibirCarrinhoServlet.class

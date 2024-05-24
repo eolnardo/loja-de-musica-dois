@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 @WebServlet("/login-cliente")
@@ -38,9 +39,15 @@ public class LoginServlet extends HttpServlet {
 
         boolean eClienteValido = new ClienteDAO().verificarCredenciais(cliente);
 
+
         if (eClienteValido) {
 
             req.getSession().setAttribute("loggedCliente", email);
+
+            HttpSession session = req.getSession();
+
+            session.setAttribute("id", ClienteDAO.getCliente().getId());
+
 
             resp.sendRedirect("/carregar-tela-inicial");
 

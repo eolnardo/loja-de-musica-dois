@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page contentType="text/html; charset=UTF-8" %>
 <!DOCTYPE html>
 <html lang="pt-BR" xmlns:th="http://www.w3.org/1999/xhtml">
 
@@ -30,13 +31,13 @@
         </li>
     </form>
 
+    <a href="/adicionar-carrinho"><i class="fa-solid fa-cart-shopping mt-4"></i></a>
     <c:choose>
         <c:when test="${sessionScope.loggedCliente != null}">
             <a href="/logout-cliente" class="btn mt-4" style="z-index: 999">Sair</a>
         </c:when>
         <c:otherwise>
             <div class="right-navbar">
-                <a href="/adicionar-carrinho"><i class="fa-solid fa-cart-shopping mt-4"></i></a>
                 <a href="/login-cliente" class="btn mt-4" style="z-index: 999">>Login ou Cadastre-se</a>
             </div>
         </c:otherwise>

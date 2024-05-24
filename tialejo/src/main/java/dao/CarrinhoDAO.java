@@ -1,5 +1,6 @@
 package dao;
 
+import model.Carrinho;
 import model.ItemPedido;
 import model.Produto;
 import servlet.config.ConnectionPoolConfig;
@@ -10,108 +11,86 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CarrinhoDAO {
-    public void adicionarItemAoCarrinho(ItemPedido itemPedido) {
-        String SQL = "INSERT INTO ItemPedido (idPedido, idProduto, quantidade, valorUnitario, nome) VALUES (?, ?, ?, ?, ?)";
 
-        BigDecimal total;
+    public List<Carrinho> encontrarCarrinhoPorClienteId(String idCliente) {
+        String SQL = "SELECT  CARRINHO.IDCARRINHO,  CARRINHO.IDCLIENTE,  CARRINHO.IDPRODUTO,  CARRINHO.QUANTIDADE, PRODUTO.NOME, PRODUTO.DESCRICAO, PRODUTO.PRECO, PRODUTO.IMAGE FROM  CARRINHO INNER JOIN PRODUTO ON  CARRINHO.IDPRODUTO = PRODUTO.ID WHERE  CARRINHO.IDCLIENTE = ?";
 
-        try (Connection connection = ConnectionPoolConfig.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
-            preparedStatement.setInt(1, itemPedido.getIdPedido());
-            preparedStatement.setInt(2, itemPedido.getIdProduto());
-            preparedStatement.setInt(3, itemPedido.getQuantidade());
-            preparedStatement.setBigDecimal(4, itemPedido.subTotalItemPedido());
-            preparedStatement.setString(5, itemPedido.getNomeProduto());
 
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao adicionar item ao carrinho", e);
-        }
-    }
+        System.out.println("estou aqui");
 
-    public void aumentarQuantidadeItemNoCarrinho(int idItemPedido, int quantidade) {
-        String SQL = "UPDATE ItemPedido SET quantidade = quantidade + ?, subtotal = preco * (quantidade + ?) WHERE idItemPedido = ?";
+        List<Carrinho> carrinhos = new ArrayList<>();
 
         try (Connection connection = ConnectionPoolConfig.getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
-            preparedStatement.setInt(1, quantidade);
-            preparedStatement.setInt(2, quantidade);
-            preparedStatement.setInt(3, idItemPedido);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao aumentar quantidade do item no carrinho", e);
-        }
-    }
 
-    public void diminuirQuantidadeItemNoCarrinho(int idItemPedido, int quantidade) {
-        String SQL = "UPDATE ItemPedido SET quantidade = quantidade - ?, subtotal = preco * (quantidade - ?) WHERE idItemPedido = ?";
+            preparedStatement.setString(1, idCliente);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                System.out.println("estou aqui 1c");
+                while (resultSet.next()) {
+                    String produtoId = resultSet.getString("idProduto");
+                    String clienteId = resultSet.getString("idCliente");
+                    String produtoNome = resultSet.getString("nome");
+                    String produtoDescricao = resultSet.getString("descricao");
+                    BigDecimal preco = resultSet.getBigDecimal("preco");
+                    String imagemProduto = resultSet.getString("image");
+                    int quantidade = resultSet.getInt("quantidade");
+                    System.out.println("estou aqui 122c");
 
-        try (Connection connection = ConnectionPoolConfig.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
-            preparedStatement.setInt(1, quantidade);
-            preparedStatement.setInt(2, quantidade);
-            preparedStatement.setInt(3, idItemPedido);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao diminuir quantidade do item no carrinho", e);
-        }
-    }
+                    Produto produto = new Produto(produtoId, produtoNome, produtoDescricao, preco, imagemProduto);
+                    System.out.println(produtoId);
+                    Carrinho carrinho = new Carrinho(resultSet.getString("IDCARRINHO"), produtoId, clienteId, quantidade, produto);
 
-    public void removerItemDoCarrinho(int idItemPedido) {
-        String SQL = "DELETE FROM ItemPedido WHERE idItemPedido = ?";
+                    System.out.println(produto);
+                    System.out.println(carrinho);
+                    System.out.println(produtoId);
 
-        try (Connection connection = ConnectionPoolConfig.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
-            preparedStatement.setInt(1, idItemPedido);
-            preparedStatement.executeUpdate();
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao remover item do carrinho", e);
-        }
-    }
+                    carrinhos.add(carrinho);
 
-    public List<Produto> mostrarCarrinho(List<ItemPedido> carrinho) {
-        List<Produto> produtosCarrinho = new ArrayList<>();
+                    System.out.println(carrinho);
 
-        // Verificar se o carrinho está vazio
-        if (carrinho.isEmpty()) {
-            return produtosCarrinho;
-        }
-
-        // Preparar a consulta SQL para obter os detalhes dos produtos no carrinho
-        StringBuilder query = new StringBuilder("SELECT * FROM Produto WHERE idProduto IN (");
-        for (int i = 0; i < carrinho.size(); i++) {
-            query.append("?");
-            if (i < carrinho.size() - 1) {
-                query.append(",");
-            }
-        }
-        query.append(")");
-
-        try (Connection connection = ConnectionPoolConfig.getConnection();
-             PreparedStatement preparedStatement = connection.prepareStatement(query.toString())) {
-
-            // Definir os parâmetros da consulta
-            for (int i = 0; i < carrinho.size(); i++) {
-                preparedStatement.setInt(i + 1, carrinho.get(i).getIdProduto());
+                }
             }
 
-            // Executar a consulta
-            ResultSet resultSet = preparedStatement.executeQuery();
-
-            // Processar os resultados da consulta
-            while (resultSet.next()) {
-                Produto produto = new Produto();
-                produto.setId(resultSet.getString("id"));
-                produto.setNome(resultSet.getString("nome"));
-                produto.setPreco(resultSet.getBigDecimal("preco"));
-                // Adicionar o produto à lista de produtos do carrinho
-                produtosCarrinho.add(produto);
-            }
-        } catch (SQLException e) {
-            throw new RuntimeException("Erro ao obter produtos do carrinho", e);
+        } catch (Exception e) {
+            System.out.println("Erro na conexão com o banco de dados: " + e.getMessage());
         }
-
-        return produtosCarrinho;
+        return carrinhos;
     }
 
+    public Carrinho encontrarPorClienteIdeProdutoId(String idCliente, String idProduto) {
+        String SQL = "SELECT * FROM CARRINHO WHERE IDCLIENTE = ? AND IDPRODUTO = ?";
+        try (Connection connection = ConnectionPoolConfig.getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(SQL)) {
+
+            preparedStatement.setString(1, idCliente);
+            preparedStatement.setString(2, idProduto);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    String idCarrinho = resultSet.getString("idCarrinho");
+                    int quantidade = resultSet.getInt("quantidade");
+                    return new Carrinho(idCarrinho, idProduto, idCliente, quantidade);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Erro na conexão com o banco de dados: " + e.getMessage());
+        }
+        return null;
+    }
+    public void criarCarrinho(Carrinho carrinho) {
+        String SQL = "INSERT INTO CARRINHO (idCliente, idProduto, quantidade) VALUES (?, ?, ?)";
+
+        try {
+            Connection connection = ConnectionPoolConfig.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+            preparedStatement.setString(1, carrinho.getIdCliente());
+            preparedStatement.setString(2, carrinho.getIdProduto());
+            preparedStatement.setInt(3, carrinho.getQuantidade());
+
+            preparedStatement.execute();
+            System.out.println("success in insert command");
+            connection.close();
+        } catch (Exception e) {
+            System.out.println("Erro ao inserir na tabela CARRINHO: " + e.getMessage());
+        }
+    }
 }

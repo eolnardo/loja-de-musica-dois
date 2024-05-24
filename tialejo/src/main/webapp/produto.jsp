@@ -25,9 +25,7 @@
         </div>
     </a>
     <div class="right-navbar">
-        <form action="encontrar-todos-produtos" method="get">
-            <button  class="btn mt-4" style="z-index: 999">Voltar</button>
-        </form>
+            <a  class="btn mt-4" style="z-index: 999" href="/carregar-tela-inicial">Voltar</a>
         <c:choose>
             <c:when test="${sessionScope.loggedUsuario != null}">
                 <a href="/logout-cliente" class="btn mt-4" style="z-index: 999">Sair</a>
@@ -64,7 +62,7 @@
 
             <!-- Exemplo de botão "Comprar" na página de detalhes do produto -->
                 <input type="hidden" name="action" value="adicionar">
-                <input type="hidden" name="idProduto" value="${produto.id}">
+                <input type="hidden" id="idProduto" name="idProduto" value="${produto.id}">
                 <div class="col-12 text-center align-self-center py-5" style="color: rgb(180, 14, 235)">
                     <label>Nome</label>
                     <input value="${produto.nome}" readonly>
@@ -77,9 +75,13 @@
                     <h3 style="color: rgb(234, 18, 18)">Descrição: ${produto.descricao}</h3>
                 </div>
                 <!-- Botão "Adicionar ao Carrinho" -->
-            <a href="/adicionar-carrinho?nome=${produto.nome}&preco=${produto.preco}&id=${produto.id}" class="btn mt-1 align-self-center">Adicionar ao Carrinho</a>
         </div>
         </div>
+    </form>
+    <form action="/adicionar-carrinho" method="post">
+        <input type="hidden" name="idProdutoSacola" id="idProdutoSacola">
+        <input type="hidden" id="quantidade" name="quantidade" value="1">
+        <button type="submit" class="btn mt-1 align-self-center">Adicionar ao Carrinho</button>
     </form>
 <script src="static/js/carrousel.js"></script>
 

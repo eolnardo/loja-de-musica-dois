@@ -45,8 +45,8 @@
     <div class="titulo">Carrinho</div>
     <div class="conteuod">
         <form action="/adicionar-carrinho" method="get">
-            <c:if test="${not empty produtosCarrinho}">
-            <c:forEach var="produto" items="${produtosCarrinho}">
+            <c:set var="subtotal" value="0" scope="page"/>
+            <c:forEach var="carrinho" items="${carrinhos}">
         <section>
             <table class=" tabela">
                 <thead>
@@ -62,22 +62,17 @@
                 <tr>
                     <td>
                         <div class="product">
-                            <img src="https://picsum.photos/id/1/100/120" alt="">
+                            <img class="img" src="${carrinho.produto.image}"  alt="${carrinho.produto.nome}">
                             <div class="info">
-                                <div class="name">nome do produto</div>
-                                <div class="color">Categoria</div>
+                                <div class="name">${carrinho.produto.nome}</div>
                             </div>
                         </div>
                     </td>
-                    <td>R$ 150(valor)</td>
+                    <td>R$ ${carrinho.produto.preco}</td>
                     <td>
-                        <div class="qty">
-                            <button><i class="fa-solid fa-minus"></i></button>
-                            <span>2</span>
-                            <button><i class="fa-solid fa-plus"></i></button>
-                        </div>
+                        <span>${carrinho.quantidade}</span>
                     </td>
-                    <td>R$ 300 (total)</td>
+                    <td><fmt:formatNumber value="${carrinho.produto.preco * carrinho.quantidade}" type="currency" currencySymbol="R$"/></td>
                     <td>
                         <button class="remove"><i class="fa-solid fa-x"></i></button>
                     </td>
@@ -87,7 +82,6 @@
             </table>
         </section>
             </c:forEach>
-            </c:if>
         </form>
         <aside>
             <div class="box">
