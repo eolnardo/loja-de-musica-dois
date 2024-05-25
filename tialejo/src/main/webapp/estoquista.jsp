@@ -12,6 +12,7 @@
           integrity="sha512-VuwNeOLQQ1vXtZgTkqK3zUFJAN3Uw8byEUVqyIZJc6DvZ4FYvZMzUKcFE4fsVHmzUchidreL5x5xKWszxiVjQg=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/cliente.css">
     <link rel="shortcut icon" href="img/cd.ico" type="image/x-icon">
 </head>
 

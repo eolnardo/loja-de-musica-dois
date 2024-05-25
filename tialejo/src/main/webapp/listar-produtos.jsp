@@ -12,6 +12,7 @@
           integrity="sha512-VuwNeOLQQ1vXtZgTkqK3zUFJAN3Uw8byEUVqyIZJc6DvZ4FYvZMzUKcFE4fsVHmzUchidreL5x5xKWszxiVjQg=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="static/css/style.css">
+    <link rel="stylesheet" href="static/css/cliente.css">
     <link rel="shortcut icon" href="img/cd.ico" type="image/x-icon">
 </head>
 <nav class="navbar">
@@ -28,7 +29,7 @@
 </nav>
 
 <body>
-<div>
+<div id="container-tabela">
 
 
     <c:if test="${sessionScope.loggedUsuario != null}">
@@ -38,28 +39,29 @@
 
     <h1>Produtos</h1>
     <table>
-        <tr>
+        <tr >
             <th>ID</th>
             <th>Nome</th>
             <th>Quantidade</th>
             <th>Valor</th>
             <th>Status</th>
             <c:if test="${sessionScope.loggedUsuario != null}">
-                <th>Ações</th>
+                <th colspan="3" style="text-align: center;">Ações</th>
             </c:if>
 
 
         </tr>
         <form action="/listar-produtos" method="GET">
             <div class="search">
-                <div class="input-group mb-3">
+                <div class="input-group mb-3" style="column-gap: 10px;">
                     <form action="/listar-produtos" method="GET">
-                        <input type="text" class="form-style" placeholder="Busca" name="q">
-                        <button type="submit"><img src="static/images/search.png" alt=""></button>
+                        <div class="busca">
+                            <input type="text" class="form-style" placeholder="Busca" name="q">
+                            <button class="botao azul" type="submit">Buscar</button>
+                        </div>
                     </form>
-                    <a href="/criar-produto.jsp"><img src="static/images/add.png" alt=""></a>
+                    <button class="botao cinza"><a href="/criar-produto.jsp">Criar</a></button>
                 </div>
-
             </div>
         </form>
         <c:forEach var="produto" items="${produtos}">
@@ -69,36 +71,35 @@
                 <td>${produto.qtdEstoque}</td>
                 <td>${produto.preco}</td>
                 <td>
-                <c:choose>
-                    <c:when test="${produto.status}">
-                        Ativo
-                    </c:when>
-                    <c:otherwise>
-                        Inativo
-                    </c:otherwise>
-                </c:choose>
+                    <c:choose>
+                        <c:when test="${produto.status}">
+                            Ativo
+                        </c:when>
+                        <c:otherwise>
+                            Inativo
+                        </c:otherwise>
+                    </c:choose>
                 </td>
                 <td>
                     <c:if test="${sessionScope.loggedUsuario != null}">
                         <form action="/delete-car" method="post">
-                            <span> | </span>
-                            <a href="index.jsp?id=${produto.id}&name=${produto.nome}">Atualizar</a>
+                            <button class="botao azul"><a href="index.jsp?id=${produto.id}&name=${produto.nome}">Atualizar</a></button>
                         </form>
                     </c:if>
                 </td>
                 <td>
                     <form action="/visualizar-produto" method="get">
                         <input type="hidden" name="id" value="${produto.id}">
-                        <button type="submit">Visualizar</button>
+                        <button class="botao azul" type="submit">Visualizar</button>
                     </form>
                 </td>
                 <c:if test="${sessionScope.loggedUsuario != null and sessionScope.grupo == 'admin'}">
-                <td>
+                    <td>
                         <form action="alterar-status-produto" method="post">
                             <input type="hidden" name="id" value="${produto.id}">
-                            <button type="submit">Inativar/Reativar</button>
+                            <button class="botao azul" type="submit">Inativar/Reativar</button>
                         </form>
-                </td>
+                    </td>
                 </c:if>
             </tr>
         </c:forEach>
