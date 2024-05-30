@@ -144,6 +144,28 @@ public class UsuarioDAO {
     }
 
     public void criarUsuario(Usuario usuario) {
+        String SQL = "INSERT INTO USUARIO (nome, cpf, email, senha, confirmaSenha, grupo, status) VALUES (?,?,?,?,?,?,?)";
 
+        try{
+
+            Connection connection = ConnectionPoolConfig.getConnection();
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+
+            preparedStatement.setString(1, usuario.getNome());
+            preparedStatement.setString(2, usuario.getCpf());
+            preparedStatement.setString(3, usuario.getEmail());
+            preparedStatement.setString(4, usuario.getSenha());
+            preparedStatement.setString(5, usuario.getConfirmaSenha());
+            preparedStatement.setString(6, usuario.getGrupo());
+            preparedStatement.setBoolean(7, usuario.isStatus());
+
+
+            preparedStatement.execute();
+            connection.close();
+
+        }catch (SQLException e) {
+            System.out.println("fail in database connection usuario ");
+            throw new RuntimeException(e);
+        }
     }
 }

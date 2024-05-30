@@ -1,6 +1,6 @@
-<!DOCTYPE html>
+<%@ page contentType="text/html; charset=UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %><!DOCTYPE html>
 <html>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <head>
     <title>Tialejo ® - Sua Loja de Música!</title>
     <meta charset="utf-8">
@@ -11,11 +11,23 @@
           integrity="sha512-VuwNeOLQQ1vXtZgTkqK3zUFJAN3Uw8byEUVqyIZJc6DvZ4FYvZMzUKcFE4fsVHmzUchidreL5x5xKWszxiVjQg=="
           crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="static/css/style.css">
-    <link rel="stylesheet" href="static/css/cliente.css">
-    <link rel="shortcut icon" href="@{/images/cd.ico}" type="image/x-icon">
+    <link rel="shortcut icon" href="static/images/cd.ico" type="image/x-icon">
 </head>
+<nav class="navbar">
+    <a href="/carregar-tela-inicial">
+        <div class="left-navbar">
+            <img  src="static/images/logo-tialejo.png" alt="Logo">
+            <h1 class="mt-2">Tialejo ®</h1>
+        </div>
+    </a>
+    <c:if test="${sessionScope.loggedUsuario != null}">
+        <span>${sessionScope.loggedUsuario}</span>
+        <a href="/logout-backoffice">Sair</a>
+    </c:if>
+</nav>
+
 <body>
-<div id="container-tabela">
+    <div id="container-tabela">
 
     <c:if test="${sessionScope.loggedUsuario != null}">
         <span>${sessionScope.loggedUsuario}</span>
@@ -23,7 +35,20 @@
     </c:if>
 
     <h1>Usuários</h1>
-    <table>
+        <form action="/listar-produtos" method="GET">
+            <div class="search">
+                <div class="input-group mb-3" style="column-gap: 10px;">
+                    <form action="/listar-produtos" method="GET">
+                        <div class="busca">
+                            <input type="text" class="form-style" placeholder="Busca" name="q">
+                            <button class="botao azul" type="submit">Buscar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </form>
+        <a href="/criar-usuario.jsp" class="botao cinza">Criar</a>
+        <table>
         <tr>
             <th>Nome</th>
             <th>E-mail</th>

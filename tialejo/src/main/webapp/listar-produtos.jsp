@@ -60,7 +60,7 @@
                             <button class="botao azul" type="submit">Buscar</button>
                         </div>
                     </form>
-                    <button class="botao cinza"><a href="/criar-produto.jsp">Criar</a></button>
+                    <a class="botao cinza" href="/criar-produto.jsp">Criar</a>
                 </div>
             </div>
         </form>

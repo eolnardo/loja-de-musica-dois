@@ -82,7 +82,7 @@
                     <input value="${produto.avaliacao}" readonly>
                 </div>
                 <div class="action-button" style="margin-left: 40%;">
-                    <button type="submit" class="botao azul">Adicionar ao Carrinho</button>
+                    <a class="botao azul">Comprar</a>
                 </div>
             </div>
         </div>
