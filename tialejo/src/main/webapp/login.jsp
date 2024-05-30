@@ -37,7 +37,7 @@
                     <div class="form">
     
                       <h1 class="mb-0 pb-3">Login</h1>
-                      <form action="/login-backoffice" method="post">
+                      <form action="/login-cliente" method="post">
                         <div class="input-group">
                           <div class="input-box">
                             <span>${requestScope.message}</span>
@@ -55,7 +55,7 @@
                         </div>
                         <div class="action-button">
                           <button class="botao azul" type="submit" style="width: 250px;">Entrar</button>
-                          <button class="botao cinza">Cadastre-se</button>
+                          <a href="criar-cliente.jsp" class="botao cinza">Cadastre-se</a>
                         </div>
     
                       </form>

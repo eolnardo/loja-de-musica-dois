@@ -119,11 +119,11 @@
 
                         <div class="input-box">
                             <label for="nome">Nome:</label>
-                            <input type="text" id="nome" name="nome" value="${param.nome}" required><br><br>
+                            <input type="text" id="nome" name="nome" value="${cliente.nome}" required><br><br>
                         </div>
                         <div class="input-box">
                             <label for="dataNascimento">Data de Nascimento:</label>
-                            <input type="text" id="dataNascimento" name="dataNascimento" value="${param.dataNascimento}" readonly><br><br>
+                            <input type="text" id="dataNascimento" name="dataNascimento" value="${cliente.dataNascimento}" readonly><br><br>
                         </div>
                         <script>
                             $( function() {
@@ -132,13 +132,13 @@
                         </script>
                         <div class="input-box">
                             <label for="cepFaturamento">CEP do Endereço de Faturamento:</label>
-                            <input type="text" id="cepFaturamento" name="cepFaturamento" value="${param.cepFaturamento}" required>
+                            <input type="text" id="cepFaturamento" name="cepFaturamento" value="${cliente.cepFaturamento}" required>
                             <button class="botao azul" type="button" onclick="consultarCEP(document.getElementById('cepFaturamento').value, 'enderecoFaturamento')">Consultar</button>
                             <br><br>
                         </div>
                         <div class="input-box">
                             <label for="enderecoFaturamento">Endereço de Faturamento:</label>
-                            <input type="text" id="enderecoFaturamento" name="enderecoFaturamento" value="${param.enderecoFaturamento}" readonly>
+                            <input type="text" id="enderecoFaturamento" name="enderecoFaturamento" value="${cliente.enderecoFaturamento}" readonly>
                             <br><br>
                         </div>
                         <div class="input-box">
@@ -147,14 +147,14 @@
                         </div>
                         <div class="input-box">
                             <label for="cepEntrega">CEP do Endereço de Entrega:</label>
-                            <input type="text" id="cepEntrega" name="cepEntrega" value="${param.cepEntrega}" required>
+                            <input type="text" id="cepEntrega" name="cepEntrega" value="${cliente.cepEntrega}" required>
                             <button class="botao azul" type="button" onclick="consultarCEP(document.getElementById('cepEntrega').value, 'enderecoEntrega')">Consultar</button>
                         </div>
                         <br><br>
 
                         <div class="input-box">
                             <label for="enderecoEntrega">Endereço de Entrega:</label>
-                            <input type="text" id="enderecoEntrega" name="enderecoEntrega" value="${param.enderecoEntrega}" required><br><br>
+                            <input type="text" id="enderecoEntrega" name="enderecoEntrega" value="${cliente.enderecoEntrega}" required><br><br>
                             <button class="botao azul" type="button" onclick="copiarEndereco()">Copiar Faturamento</button>
                         </div>
                         <div class="input-box">
@@ -170,14 +170,14 @@
                         </div>
                         <div class="input-box">
                             <label for="senha">Senha:</label>
-                            <input type="password" id="senha" name="senha" value="${param.senha}"  required><br><br>
+                            <input type="password" id="senha" name="senha" value="${cliente.senha}"  required><br><br>
                         </div>
                         <div class="input-box">
-                            <label for="confirmarSenha">Confirmar Senha:</label>
-                            <input type="password" id="confirmarSenha" name="confirmarSenha" value="${param.confirmarSenha}"  required><br><br>
+                            <label for="confirmaSenha">Confirmar Senha:</label>
+                            <input type="password" id="confirmaSenha" name="confirmaSenha" value="${cliente.confirmaSenha}"  required><br><br>
                         </div>
                         <div class="input-box">
-                            <input type="hidden" id="id" name="id" value="${param.id}">
+                            <input type="hidden" id="id" name="id" value="${cliente.id}">
                         </div>
                     </div>
 

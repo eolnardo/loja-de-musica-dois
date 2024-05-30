@@ -25,7 +25,7 @@
             </div>
         </a>
 
-        <form action="atualizar-cadastro-cliente" method="get">
+        <form action="/atualizar-cadastro-cliente" method="get">
             <li>
                 <button class="botao azul" type="submit">Meu Cadastro</button>
             </li>
