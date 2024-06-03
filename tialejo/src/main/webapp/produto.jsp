@@ -21,12 +21,12 @@
 <nav class="navbar">
     <a href="/carregar-tela-inicial">
         <div class="left-navbar">
-            <img  src="static/images/cd.ico" alt="Logo">
+            <img src="static/images/cd.ico" alt="Logo">
             <h1 class="mt-2">Tialejo ®</h1>
         </div>
     </a>
     <div class="right-navbar">
-            <a  class="btn mt-4" style="z-index: 999" href="/carregar-tela-inicial">Voltar</a>
+        <a class="btn mt-4" style="z-index: 999" href="/carregar-tela-inicial">Voltar</a>
         <c:choose>
             <c:when test="${sessionScope.loggedUsuario != null}">
                 <a href="/logout-cliente" class="btn mt-4" style="z-index: 999">Sair</a>
@@ -38,15 +38,13 @@
     </div>
 </nav>
 
-
-
-    <form action="/visualizar" method="get">
-        <div class="maior">
+<form action="/visualizar" method="get">
+    <div class="maior">
         <div class="produto">
             <div class="carrousel" data-carrousel>
                 <div class="slides" data-slides-container>
                     <div class="slide">
-                        <div class="conteudo" >
+                        <div class="conteudo">
                             <img class="standardsize" src="${produto.image}" alt="Imagem do Produto">
                         </div>
                     </div>
@@ -54,38 +52,38 @@
             </div>
         </div>
         <div class="carrousel-botoes">
-            <a href="/visualizar?id=${produto.id}" class="carrousel-botoes botao-anterior " data-carrousel-botao-anterior><span
-                    class="fa-solid fa-circle-chevron-left"></span></a>
-            <a href="/visualizar?id=${produto.id}"  class="carrousel-botoes botao-proximo " data-carrousel-botao-proximo><span
-                    class="fa-solid fa-circle-chevron-right"></span></a>
+            <a href="/visualizar?id=${produto.id}" class="carrousel-botoes botao-anterior" data-carrousel-botao-anterior>
+                <span class="fa-solid fa-circle-chevron-left"></span>
+            </a>
+            <a href="/visualizar?id=${produto.id}" class="carrousel-botoes botao-proximo" data-carrousel-botao-proximo>
+                <span class="fa-solid fa-circle-chevron-right"></span>
+            </a>
         </div>
         <div>
-
             <!-- Exemplo de botão "Comprar" na página de detalhes do produto -->
-                <input type="hidden" name="action" value="adicionar">
-                <input type="hidden" id="idProduto" name="idProduto" value="${produto.id}">
-                <div class="col-12 text-center align-self-center py-5" style="color: rgb(180, 14, 235)">
-                    <label>Nome</label>
-                    <input value="${produto.nome}" readonly>
-                </div>
-                <div class="informações">
-                    <h3 style="color: rgb(234, 18, 18)">Preço: <input value="${produto.preco}" readonly></h3>
-                    <h4>Avaliações: <input value="${produto.avaliacao}" readonly> <i class="fa-solid fa-star"></i></h4>
-                </div>
-                <div class="informações">
-                    <h3 style="color: rgb(234, 18, 18)">Descrição: ${produto.descricao}</h3>
-                </div>
-                <!-- Botão "Adicionar ao Carrinho" -->
+            <input type="hidden" name="action" value="adicionar">
+            <input type="hidden" id="idProduto" name="idProduto" value="${produto.id}">
+            <div class="col-12 text-center align-self-center py-5" style="color: rgb(180, 14, 235)">
+                <label>Nome</label>
+                <input value="${produto.nome}" readonly>
+            </div>
+            <div class="informações">
+                <h3 style="color: rgb(234, 18, 18)">Preço: <input value="${produto.preco}" readonly></h3>
+                <h4>Avaliações: <input value="${produto.avaliacao}" readonly> <i class="fa-solid fa-star"></i></h4>
+            </div>
+            <div class="informações">
+                <h3 style="color: rgb(234, 18, 18)">Descrição: ${produto.descricao}</h3>
+            </div>
         </div>
-        </div>
-    </form>
-    <form action="/adicionar-carrinho" method="post">
-        <input type="hidden" name="idProdutoSacola" id="idProdutoSacola">
-        <input type="hidden" id="quantidade" name="quantidade" value="1">
-        <button type="submit" class="btn mt-1 align-self-center">Adicionar ao Carrinho</button>
-    </form>
+    </div>
+</form>
+
+<form action="/adicionar-carrinho" method="post">
+    <input type="hidden" name="idProdutoCarrinho" id="idProdutoCarrinho" value="${produto.id}">
+    <input type="hidden" id="quantidade" name="quantidade" value="1">
+    <button type="submit" class="btn mt-1 align-self-center">Adicionar ao Carrinho</button>
+</form>
 <script src="static/js/carrousel.js"></script>
 
 </body>
-
 </html>

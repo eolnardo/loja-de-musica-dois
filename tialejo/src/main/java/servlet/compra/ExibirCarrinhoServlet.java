@@ -16,7 +16,10 @@ public class ExibirCarrinhoServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         //pega a categoria que o usuário selecionou na páagina web
-        String idClienteStr = req.getParameter("idCliente");
+        String idClienteStr;
+
+        if(req.getSession().getAttribute("loggedCliente") != null) idClienteStr = req.getParameter("idCliente");
+        else idClienteStr = "0";
 
         //transforma em inteiro
         String idCliente = idClienteStr;

@@ -2,7 +2,7 @@ CREATE TABLE Produto (
     id INT AUTO_INCREMENT PRIMARY KEY,
     nome VARCHAR(100),
     avaliacao VARCHAR(10),
-    descricao VARCHAR(255),
+    descricao VARCHAR(2500),
     preco DECIMAL(10, 2),
     qtdEstoque INT,
     status BOOLEAN,
@@ -91,5 +91,6 @@ CREATE TABLE ItemCarrinho (
     FOREIGN KEY (idCarrinho) REFERENCES Carrinho(idCarrinho)
 );
 
+INSERT INTO CLIENTE (ID, NOME, email, cpf, senha, confirmasenha, enderecofaturamento, enderecoentrega) VALUES ('0', 'NAOLOGADO NAOLOGADO', 'naologado@naologado', '000.000.000-00', '0', '0', '0', '0');
 
 
