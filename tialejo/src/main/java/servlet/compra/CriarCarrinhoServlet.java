@@ -24,7 +24,7 @@ public class CriarCarrinhoServlet extends HttpServlet {
                 idCliente = sessionId;
             }
         }
-
+ 
         String idProduto = req.getParameter("idProdutoCarrinho"); // Verifique o nome do parâmetro aqui
         int quantidade = Integer.parseInt(req.getParameter("quantidade"));
 

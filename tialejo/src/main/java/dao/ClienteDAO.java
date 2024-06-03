@@ -1,9 +1,15 @@
 package dao;
 
+import model.Carrinho;
 import model.Cliente;
+import model.Endereco;
+import model.Produto;
 import servlet.config.ConnectionPoolConfig;
 
+import java.math.BigDecimal;
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
 
 public class ClienteDAO {
 
@@ -151,6 +157,48 @@ public class ClienteDAO {
 
         }
 
+    }
+
+    public List<Endereco> encontrarEnderecoPorClienteId (String id){
+
+        String SQL = "SELECT * FROM ENDERECO WHERE IDCLIENTE = ?";
+
+        List<Endereco> enderecos = new ArrayList<>();
+
+        try {
+            Connection connection = ConnectionPoolConfig.getConnection();
+
+            PreparedStatement preparedStatement = connection.prepareStatement(SQL);
+
+            preparedStatement.setString(1, id);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                System.out.println("estou aqui 2c");
+                while (resultSet.next()) {
+                    String enderecoId = resultSet.getString("id");
+                    String enderecoCep = resultSet.getString("cep");
+                    String endereco = resultSet.getString("endereco");
+                    String enederecoClienteId = resultSet.getString("idCliente");
+                    System.out.println("estou aqui 133c");
+                    System.out.println(enderecoId);
+
+                    Endereco novoEndereco = new Endereco(enderecoId, enederecoClienteId, endereco, enderecoCep);
+
+                    enderecos.add(novoEndereco);
+                }
+            }
+
+            System.out.println("sucesso em consultar endereços do cliente");
+
+            connection.close();
+
+        } catch (SQLException e) {
+
+            System.out.println("fail in database connection 17");
+            System.out.println("Error: " + e.getMessage());
+
+        }
+
+        return enderecos;
     }
 
 //    public Cliente encontrarClientePorId(String id) {

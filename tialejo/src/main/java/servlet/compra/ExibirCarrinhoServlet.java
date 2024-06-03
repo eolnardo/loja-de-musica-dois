@@ -24,7 +24,7 @@ public class ExibirCarrinhoServlet extends HttpServlet {
         //transforma em inteiro
         String idCliente = idClienteStr;
 
-        /*EnderecoDao enderecoDao = new EnderecoDao();
+        /*  EnderecoDao enderecoDao = new EnderecoDao();
         List<Endereco> enderecosUsuario = enderecoDao.findEndereco(idCliente);
         req.setAttribute("enderecos", enderecosUsuario);
         // cria uma nova instância da DAO*/

@@ -44,7 +44,7 @@ INSERT INTO Cliente (cpf, nome, email, senha, confirmasenha, telefone, enderecoF
 
 CREATE TABLE Endereco (
     ID INT AUTO_INCREMENT PRIMARY KEY,
-    ClienteID INT,
+    idcliente INT,
     Endereco VARCHAR(255),
     CEP VARCHAR(10),
     FOREIGN KEY (ClienteID) REFERENCES Cliente(ID)
@@ -63,12 +63,12 @@ CREATE TABLE Pedido (
 CREATE TABLE Carrinho (
     idCarrinho INT AUTO_INCREMENT PRIMARY KEY,
     idCliente INT,
-    totalCarrinho DECIMAL(10, 2) NOT NULL,
-    numeroItens INT NOT NULL,
+    idProduto INT,
+    quantidade INT NOT NULL,
     dataCriacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     frete DECIMAL(10, 2),
     enderecoEntrega VARCHAR(255),
-    FOREIGN KEY (idCliente) REFERENCES Cliente(idCliente)
+    FOREIGN KEY (idCliente) REFERENCES Cliente(id)
 );
 
 CREATE TABLE ItemPedido (

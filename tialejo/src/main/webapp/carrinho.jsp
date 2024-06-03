@@ -95,7 +95,7 @@
                     <span>R$ <fmt:formatNumber value="${subtotal}" type="number" minFractionDigits="2"/></span>
                 </footer>
             </div>
-            <button class="botao azul">Finalizar Compra</button>
+            <a href="/checkout" class="botao azul">Finalizar Compra</a>
         </aside>
     </div>
 </main>
