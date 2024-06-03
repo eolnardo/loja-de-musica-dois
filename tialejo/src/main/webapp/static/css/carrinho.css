@@ -15,6 +15,7 @@ button{
 
 .conteudo{
     display: flex;
+    flex-direction: column;
 }
 
 section{

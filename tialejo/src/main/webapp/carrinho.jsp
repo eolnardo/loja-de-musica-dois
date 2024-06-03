@@ -43,21 +43,21 @@
     <div class="titulo">Carrinho</div>
     <div class="conteudo">
         <c:set var="subtotal" value="0" scope="page"/>
-        <c:forEach var="carrinho" items="${carrinhos}">
-            <c:set var="itemTotal" value="${carrinho.produto.preco * carrinho.quantidade}" />
-            <c:set var="subtotal" value="${subtotal + itemTotal}" />
             <section>
                 <table class="tabela">
                     <thead>
-                    <tr>
-                        <th>Produto</th>
-                        <th>Preço</th>
-                        <th>Quantidade</th>
-                        <th>Total</th>
-                        <th>Remover</th>
-                    </tr>
+                        <tr>
+                            <th>Produto</th>
+                            <th>Preço</th>
+                            <th>Quantidade</th>
+                            <th>Total</th>
+                            <th>Remover</th>
+                        </tr>
                     </thead>
-                    <tbody>
+                <c:forEach var="carrinho" items="${carrinhos}">
+                    <c:set var="itemTotal" value="${carrinho.produto.preco * carrinho.quantidade}" />
+                    <c:set var="subtotal" value="${subtotal + itemTotal}" />
+                    <tbody class="linhaProduto">
                     <tr>
                         <td>
                             <div class="product">
@@ -67,22 +67,26 @@
                                 </div>
                             </div>
                         </td>
-                        <td>R$ <fmt:formatNumber value="${carrinho.produto.preco}" type="number" minFractionDigits="2"/></td>
+                        <td class="preçoProduto">R$ <fmt:formatNumber value="${carrinho.produto.preco}" type="number" minFractionDigits="2"/></td>
                         <td>
-                            <span>${carrinho.quantidade}</span>
+                            <div class="qty">
+                                <button><i class="fa-solid fa-minus"></i></button>
+                                <span>${carrinho.quantidade}</span>
+                                <button><i class="fa-solid fa-plus"></i></button>
+                            </div>
                         </td>
                         <td>R$ <fmt:formatNumber value="${itemTotal}" type="number" minFractionDigits="2"/></td>
                         <td>
-                            <form action="/remover-carrinho" method="post">
+                            <form action="/deleta-produto-carrinho">
                                 <input type="hidden" name="idProduto" value="${carrinho.produto.id}">
                                 <button class="remove" type="submit"><i class="fa-solid fa-x"></i></button>
                             </form>
                         </td>
                     </tr>
                     </tbody>
+                </c:forEach>
                 </table>
             </section>
-        </c:forEach>
         <aside>
             <div class="box">
                 <header>Resumo da compra</header>
@@ -92,13 +96,16 @@
                 </div>
                 <footer>
                     <span>Total:</span>
-                    <span>R$ <fmt:formatNumber value="${subtotal}" type="number" minFractionDigits="2"/></span>
+                    <span class="valorTotal">R$ <fmt:formatNumber value="${subtotal}" type="number" minFractionDigits="2"/></span>
                 </footer>
             </div>
-            <button class="botao azul">Finalizar Compra</button>
+
+            <a href="checkout.jsp" class="botao azul">Finalizar Compra</a>
         </aside>
     </div>
 </main>
+
+<script src="static/js/carrinho.js"></script>
 </body>
 
 </html>
