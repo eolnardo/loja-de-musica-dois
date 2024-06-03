@@ -48,8 +48,6 @@
             <c:if test="${sessionScope.loggedUsuario != null}">
                 <th colspan="3" style="text-align: center;">Ações</th>
             </c:if>
-
-
         </tr>
         <form action="/listar-produtos" method="GET">
             <div class="search">

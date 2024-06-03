@@ -93,4 +93,8 @@ public class CarrinhoDAO {
             System.out.println("Erro ao inserir na tabela CARRINHO: " + e.getMessage());
         }
     }
+
+    public void removerProdutoCarrinho(Carrinho carrinho){
+
+    }
 }
