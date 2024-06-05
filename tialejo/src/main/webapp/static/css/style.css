@@ -17,7 +17,7 @@ body {
     font-family: 'Poppins', sans-serif;
     font-weight: 300;
     line-height: 1.7;
-    color: #000;
+    color: white;
     background-color: #1f2029;
     height: 100vh;
 }
@@ -79,7 +79,7 @@ ul, li{
     list-style: none;
 }
 
-.navbar {
+/* .navbar {
     display: flex;
     justify-content: space-between;
     flex-direction: row;
@@ -114,6 +114,11 @@ ul, li{
 .right-navbar a {
     cursor: pointer;
     z-index: 999;
+} */
+
+.logo{
+    max-height: 25px;
+    max-width: 25px;
 }
 
 .content {
@@ -124,11 +129,11 @@ ul, li{
     justify-content: center;
 }
 
-.container {
+/* .container {
     gap: 1rem;
     margin-left: 25%;
 
-}
+} */
 
 .full-height {
     min-height: 100vh;
@@ -279,7 +284,7 @@ ul, li{
     transition: all 200ms linear;
 }
 
-.btn {
+/* .btn {
     border-radius: 4px;
     height: 44px;
     font-size: 13px;
@@ -301,7 +306,7 @@ ul, li{
     background-color: var(--preto);
     box-shadow: 0 8px 24px 0 rgba(16, 39, 112, .2);
     cursor: pointer;
-}
+} */
 
 table {
     width: 80%;
