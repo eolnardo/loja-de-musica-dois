@@ -24,7 +24,7 @@ public class CriarCarrinhoServlet extends HttpServlet {
                 idCliente = sessionId;
             }
         }
- 
+
         String idProduto = req.getParameter("idProdutoCarrinho"); // Verifique o nome do parâmetro aqui
         int quantidade = Integer.parseInt(req.getParameter("quantidade"));
 
@@ -39,7 +39,7 @@ public class CriarCarrinhoServlet extends HttpServlet {
         Carrinho existeCarrinho = existeCarrinhoDao.encontrarPorClienteIdeProdutoId(idCliente, idProduto);
         if (existeCarrinho != null) {
             int novaQuantidade = existeCarrinho.getQuantidade() + quantidade;
-            //existeCarrinhoDao.updateCarrinho(existeCarrinho.getId(), novaQuantidade);
+            //existeCarrinhoDao.updateCarrinho(existeCararinho.getId(), novaQuantidade);
         } else {
             Carrinho carrinho = new Carrinho(idProduto, idCliente, quantidade);
             existeCarrinhoDao.criarCarrinho(carrinho);

@@ -7,7 +7,7 @@ public class Carrinho {
     private String idCarrinho;
     private String idCliente;
     private String idProduto;
-    private BigDecimal totalCarrinho;
+    private BigDecimal valorUnitario;
     private int quantidade;
     private String data;
     private ArrayList<ItemPedido> listaItens;
@@ -40,12 +40,12 @@ public class Carrinho {
         this.quantidade = quantidade;
     }
 
-    public BigDecimal getTotalCarrinho() {
-        return totalCarrinho;
+    public BigDecimal getValorUnitario() {
+        return valorUnitario;
     }
 
-    public void setTotalCarrinho(BigDecimal totalCarrinho) {
-        this.totalCarrinho = totalCarrinho;
+    public void setValorUnitario(BigDecimal valorUnitario) {
+        this.valorUnitario = valorUnitario;
     }
 
     public int getNumeroItens() {
@@ -88,15 +88,15 @@ public class Carrinho {
         this.endereco = endereco;
     }
 
-    public void calcularTotalCarrinho() {
-        totalCarrinho = BigDecimal.ZERO;
+    public void calcularValorUnitario() {
+        valorUnitario = BigDecimal.ZERO;
         quantidade = 0;
         for (ItemPedido item : listaItens) {
-            totalCarrinho = totalCarrinho.add(item.subTotalItemPedido());
+            valorUnitario = valorUnitario.add(item.subTotalItemPedido());
             quantidade += item.getQuantidade();
         }
         if (frete != null) {
-            totalCarrinho = totalCarrinho.add(frete);
+            valorUnitario = valorUnitario.add(frete);
         }
     }
 
@@ -140,7 +140,7 @@ public class Carrinho {
                 "idCarrinho='" + idCarrinho + '\'' +
                 ", idCliente='" + idCliente + '\'' +
                 ", idProduto='" + idProduto + '\'' +
-                ", totalCarrinho=" + totalCarrinho +
+                ", valorUnitario=" + valorUnitario +
                 ", quantidade=" + quantidade +
                 ", data='" + data + '\'' +
                 ", listaItens=" + listaItens +

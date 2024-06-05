@@ -1,6 +1,9 @@
 package servlet.compra;
 
+import dao.CarrinhoDAO;
 import dao.ClienteDAO;
+import model.Carrinho;
+import model.ItemPedido;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,8 +13,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
+import java.util.List;
 
-@WebServlet("/checkout")
+@WebServlet("/resumo")
 public class CheckOutServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -31,5 +35,13 @@ public class CheckOutServlet extends HttpServlet {
 
         RequestDispatcher dispatcher = req.getRequestDispatcher("checkout.jsp");
         dispatcher.forward(req, resp);
+
+        List<Carrinho> carrinhos = new CarrinhoDAO().encontrarCarrinhoPorClienteId(idCliente);
+
+        List<ItemPedido> itemPedidos = new CarrinhoDAO().passarCarrinho(carrinhos);
+
+        new CarrinhoDAO().finalizarCarrinho(itemPedidos, idCliente);
+
+
     }
 }

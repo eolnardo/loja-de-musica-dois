@@ -52,7 +52,7 @@
                             </div>
                             <div class="action-button">
                                 <button class="botao azul" type="submit" style="width: 250px;">Entrar</button>
-                                <button class="botao cinza">Cadastre-se</button>
+                                <a href="criar-cliente.jsp" class="botao cinza">Cadastre-se</a>
                             </div>
 
                         </form>

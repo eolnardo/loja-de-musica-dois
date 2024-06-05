@@ -100,7 +100,7 @@
                 </footer>
             </div>
 
-            <a href="checkout.jsp" class="botao azul">Finalizar Compra</a>
+            <a href="/resumo" class="botao azul">Finalizar Compra</a>
         </aside>
     </div>
 </main>

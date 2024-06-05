@@ -1,4 +1,3 @@
-servlet\compra\ProcessarPedidoServlet.class
 servlet\cliente\CriarClienteServlet.class
 model\Usuario.class
 model\Carrinho.class
@@ -20,8 +19,6 @@ servlet\produto\AlterarStatusProdutoServlet.class
 dao\ProdutoDAO.class
 model\Endereco.class
 model\Pedido.class
-servlet\compra\ValidarPedidoServlet.class
-servlet\compra\ProcessarPagamentoServlet.class
 servlet\config\ConnectionPoolConfig.class
 servlet\loginbackoffice\LogoutServlet.class
 servlet\produto\CriarProdutoServlet.class
@@ -31,8 +28,6 @@ servlet\usuario\ListarUsuariosServlet.class
 dao\CarrinhoDAO.class
 servlet\produto\ListarProdutosServlet.class
 filter\FiltroAutenticacao.class
-servlet\compra\AdicionarEnderecoServlet.class
 servlet\compra\CheckOutServlet.class
 dao\ItensPedidoDAO.class
 servlet\compra\ExibirCarrinhoServlet.class
-servlet\compra\ProcessarEnderecoServlet.class

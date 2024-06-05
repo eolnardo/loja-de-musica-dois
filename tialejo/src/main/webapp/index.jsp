@@ -32,13 +32,13 @@
     </form>
 
     <div class="right-navbar">
+        <a href="/encontrar-carrinho?idCliente=${sessionScope.id}"><i class="fa-solid fa-cart-shopping mt-4"></i></a>
         <c:choose>
             <c:when test="${sessionScope.loggedCliente != null}">
                 <a href="/logout-cliente" class="btn mt-4" style="z-index: 999">Sair</a>
             </c:when>
             <c:otherwise>
                 <div class="right-navbar">
-                    <a href="/encontrar-carrinho?idCliente=${sessionScope.id}"><i class="fa-solid fa-cart-shopping mt-4"></i></a>
                     <a href="/login-cliente" class="btn mt-4" style="z-index: 999">>Login ou Cadastre-se</a>
                 </div>
             </c:otherwise>

@@ -29,7 +29,7 @@ CREATE TABLE Cliente (
     nome VARCHAR(100) NOT NULL,
     email VARCHAR(100) UNIQUE NOT NULL,
     genero VARCHAR(10),
-    cepEndereco VARCHAR(10),
+    cepEntrega VARCHAR(10),
     cepFaturamento VARCHAR(10),
     cpf VARCHAR(14) UNIQUE NOT NULL,
     senha VARCHAR(100) NOT NULL,
@@ -37,8 +37,11 @@ CREATE TABLE Cliente (
     enderecoFaturamento VARCHAR(255) NOT NULL,
     enderecoEntrega VARCHAR(255) NOT NULL,
     dataNascimento VARCHAR(14),
-    CONSTRAINT nome_2_palavras CHECK (nome REGEXP '^[a-zA-Z]+ [a-zA-Z]+$')
+    CONSTRAINT nome_restrito CHECK (
+        nome REGEXP '^[a-zA-Z]{4,}([ ]+[a-zA-Z]+){0,}$'
+    )
 );
+
 
 INSERT INTO Cliente (cpf, nome, email, senha, confirmasenha, telefone, enderecoFaturamento, enderecoEntrega) VALUES ('12345678910', 'cliente cliente', 'cliente@cliente', 'cliente', 'cliente', '00123456789', '09760280', '09760280');
 
@@ -55,6 +58,7 @@ CREATE TABLE Pedido (
     idCliente INT NOT NULL,
     totalPedido DECIMAL(10, 2) NOT NULL,
     numeroItens INT NOT NULL,
+    status VARCHAR (100),
     data VARCHAR(14) NOT NULL,
     frete DECIMAL(10, 2) NOT NULL,
     endereco VARCHAR(255) NOT NULL
@@ -67,7 +71,8 @@ CREATE TABLE Carrinho (
     quantidade INT NOT NULL,
     dataCriacao TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     frete DECIMAL(10, 2),
-    enderecoEntrega VARCHAR(255),
+    nomeProduto VARCHAR (500),
+    enderecoEntrega VARCHAR(2500),
     FOREIGN KEY (idCliente) REFERENCES Cliente(id)
 );
 

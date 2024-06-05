@@ -12,8 +12,11 @@ public class ItemPedido {
     BigDecimal valorUnitario;
     String nomeProduto;
 
-    public ItemPedido(){
-
+    public ItemPedido(int idProduto, String nomeProduto, int quantidadeProduto, BigDecimal valorUnitario){
+        this.idProduto = idProduto;
+        this.nomeProduto = nomeProduto;
+        this.quantidade = quantidadeProduto;
+        this.valorUnitario = valorUnitario;
     }
 
     public ItemPedido(int quantidade, BigDecimal valorUnitario, String nomeProduto) {
@@ -79,7 +82,11 @@ public class ItemPedido {
     }
 
     public BigDecimal subTotalItemPedido(){
-        return this.valorUnitario.multiply(BigDecimal.valueOf(this.quantidade));
+        if (this.valorUnitario != null) {
+            return this.valorUnitario.multiply(BigDecimal.valueOf(this.quantidade));
+        } else {
+            System.out.println("Valor unitário nulo para o produto: " + this.nomeProduto);
+            return BigDecimal.ZERO;
+        }
     }
-
 }
